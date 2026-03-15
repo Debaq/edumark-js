@@ -9,13 +9,13 @@ Decodificador JavaScript/TypeScript para el formato [Edumark](https://github.com
 ## Instalación
 
 ```bash
-npm install edumark-js
+npm install github:Debaq/edumark-js
 ```
 
-O directamente en el browser:
+O directamente en el browser (sin npm):
 
 ```html
-<script src="https://unpkg.com/edumark-js/dist/index.global.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Debaq/edumark-js/dist/index.global.js"></script>
 ```
 
 ## Uso rápido
@@ -40,7 +40,7 @@ const html = decode(source)
 ### Browser
 
 ```html
-<script src="https://unpkg.com/edumark-js/dist/index.global.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Debaq/edumark-js/dist/index.global.js"></script>
 <script>
   const html = Edumark.decode(texto, { mode: 'student' })
   document.getElementById('content').innerHTML = html
