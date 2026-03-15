@@ -1,4 +1,5 @@
 export type BlockType =
+  | 'hero'
   | 'objective'
   | 'definition'
   | 'key-concept'
@@ -48,6 +49,8 @@ export interface EdumarkBlock {
   description?: string
   /** For diagram blocks: code block info */
   diagramCode?: { language: string; code: string }
+  /** For hero blocks: topic list */
+  topics?: string[]
 }
 
 export interface QuestionOption {

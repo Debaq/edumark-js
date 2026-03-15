@@ -1,5 +1,5 @@
 import MarkdownIt from 'markdown-it'
-import type { EdumarkDocument, EdumarkBlock, RenderOptions, Frontmatter } from '../types.js'
+import type { EdumarkDocument, EdumarkBlock, RenderOptions } from '../types.js'
 import { renderBlock } from './block-renderers.js'
 import { buildNumbering } from './numbering.js'
 import { inlineRefPlugin } from '../parser/inline-ref.js'
@@ -15,11 +15,6 @@ export function render(doc: EdumarkDocument, _options: RenderOptions = {}): stri
   md.enable('table')
 
   const parts: string[] = []
-
-  // Hero from frontmatter
-  if (Object.keys(doc.frontmatter).length > 0) {
-    parts.push(renderHero(doc.frontmatter))
-  }
 
   // Render token stream, replacing containers with rich blocks
   const tokens = doc.tokens as any[]
@@ -59,45 +54,6 @@ export function render(doc: EdumarkDocument, _options: RenderOptions = {}): stri
   }
 
   return parts.join('')
-}
-
-function renderHero(fm: Frontmatter): string {
-  const esc = (s: unknown) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-
-  const parts: string[] = []
-  parts.push('<header class="edm-hero">')
-
-  // Meta badges
-  const badges: string[] = []
-  if (fm.subject) badges.push(`<span class="edm-hero-badge edm-hero-subject">${esc(fm.subject)}</span>`)
-  if (fm.level) badges.push(`<span class="edm-hero-badge edm-hero-level">${esc(fm.level)}</span>`)
-  if (fm.unit) badges.push(`<span class="edm-hero-badge edm-hero-unit">${esc(fm.unit)}</span>`)
-  if (badges.length) parts.push(`<div class="edm-hero-badges">${badges.join('')}</div>`)
-
-  // Title
-  if (fm.title) parts.push(`<h1 class="edm-hero-title">${esc(fm.title)}</h1>`)
-
-  // Author + date
-  const meta: string[] = []
-  if (fm.author) meta.push(`<span class="edm-hero-author">${esc(fm.author)}</span>`)
-  if (fm.date) meta.push(`<span class="edm-hero-date">${esc(fm.date)}</span>`)
-  if (fm.version) meta.push(`<span class="edm-hero-version">v${esc(fm.version)}</span>`)
-  if (meta.length) parts.push(`<div class="edm-hero-meta">${meta.join('<span class="edm-hero-sep">·</span>')}</div>`)
-
-  // Topics
-  if (fm.topics && Array.isArray(fm.topics)) {
-    parts.push('<nav class="edm-hero-topics">')
-    parts.push('<span class="edm-hero-topics-label">Temas</span>')
-    parts.push('<ul>')
-    for (const t of fm.topics) {
-      parts.push(`<li>${esc(t)}</li>`)
-    }
-    parts.push('</ul>')
-    parts.push('</nav>')
-  }
-
-  parts.push('</header>\n')
-  return parts.join('\n')
 }
 
 function renderSingleToken(tokens: any[], idx: number, md: MarkdownIt): string {

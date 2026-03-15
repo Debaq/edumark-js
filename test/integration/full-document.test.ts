@@ -9,10 +9,12 @@ describe('full document integration', () => {
   it('parses the example chapter', () => {
     const doc = parse(fixture)
 
-    // Frontmatter
-    expect(doc.frontmatter.title).toBe('Kinematics: The Study of Motion')
-    expect(doc.frontmatter.author).toBe('Edumark Example')
-    expect((doc.frontmatter.topics as string[])).toHaveLength(6)
+    // Hero block
+    const hero = doc.blocks.find(b => b.blockType === 'hero')
+    expect(hero).toBeDefined()
+    expect(hero!.fields!.title).toBe('Kinematics: The Study of Motion')
+    expect(hero!.fields!.author).toBe('Edumark Example')
+    expect(hero!.topics).toHaveLength(6)
 
     // Should find multiple blocks
     expect(doc.blocks.length).toBeGreaterThan(10)

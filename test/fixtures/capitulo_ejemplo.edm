@@ -1,4 +1,4 @@
----
+:::hero
 title: "Kinematics: The Study of Motion"
 author: "Edumark Example"
 version: 1.0
@@ -6,14 +6,13 @@ date: 2026-03
 subject: "General Physics"
 level: "Undergraduate"
 unit: "I — Mechanics"
-topics:
-  - Position and displacement
-  - Average and instantaneous velocity
-  - Acceleration
-  - Uniform rectilinear motion (URM)
-  - Uniformly accelerated rectilinear motion (UARM)
-  - Free fall
----
+- Position and displacement
+- Average and instantaneous velocity
+- Acceleration
+- Uniform rectilinear motion (URM)
+- Uniformly accelerated rectilinear motion (UARM)
+- Free fall
+:::
 
 # Kinematics: The Study of Motion
 

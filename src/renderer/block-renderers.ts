@@ -100,6 +100,45 @@ function renderGeneric(block: EdumarkBlock, childrenHtml: string): string {
 }
 
 const RENDERERS: Record<string, (block: EdumarkBlock, childrenHtml: string) => string> = {
+  hero(block) {
+    const f = block.fields || {}
+    const topics = block.topics || []
+    const parts: string[] = []
+    parts.push(`<header class="edm-hero"${id(block)}>`)
+
+    // Badges
+    const badges: string[] = []
+    if (f.subject) badges.push(`<span class="edm-hero-badge edm-hero-subject">${esc(f.subject)}</span>`)
+    if (f.level) badges.push(`<span class="edm-hero-badge edm-hero-level">${esc(f.level)}</span>`)
+    if (f.unit) badges.push(`<span class="edm-hero-badge edm-hero-unit">${esc(f.unit)}</span>`)
+    if (badges.length) parts.push(`<div class="edm-hero-badges">${badges.join('')}</div>`)
+
+    // Title
+    if (f.title) parts.push(`<h1 class="edm-hero-title">${esc(f.title)}</h1>`)
+
+    // Author + date + version
+    const meta: string[] = []
+    if (f.author) meta.push(`<span class="edm-hero-author">${esc(f.author)}</span>`)
+    if (f.date) meta.push(`<span class="edm-hero-date">${esc(f.date)}</span>`)
+    if (f.version) meta.push(`<span class="edm-hero-version">v${esc(f.version)}</span>`)
+    if (meta.length) parts.push(`<div class="edm-hero-meta">${meta.join('<span class="edm-hero-sep">·</span>')}</div>`)
+
+    // Topics
+    if (topics.length) {
+      parts.push('<nav class="edm-hero-topics">')
+      parts.push('<span class="edm-hero-topics-label">Temas</span>')
+      parts.push('<ul>')
+      for (const t of topics) {
+        parts.push(`<li>${esc(t)}</li>`)
+      }
+      parts.push('</ul>')
+      parts.push('</nav>')
+    }
+
+    parts.push('</header>\n')
+    return parts.join('\n')
+  },
+
   objective(block, childrenHtml) {
     return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
   },

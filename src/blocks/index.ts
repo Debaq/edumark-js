@@ -1,4 +1,5 @@
 export { parseDefinitions } from './definition.js'
+export { parseHeroFields } from './hero.js'
 export { parseImageFields } from './image.js'
 export { parseDiagram } from './diagram.js'
 export { parseQuestion } from './question.js'

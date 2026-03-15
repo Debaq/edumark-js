@@ -73,16 +73,16 @@ describe('HTML renderer', () => {
     expect(html).toContain('1687')
   })
 
-  it('renders frontmatter as hero', () => {
-    const source = `---
+  it('renders :::hero block', () => {
+    const source = `:::hero
 title: "Test Chapter"
 subject: "Physics"
 level: "Undergraduate"
 author: "Dr. Test"
-topics:
-  - Topic 1
-  - Topic 2
----
+- Topic 1
+- Topic 2
+:::
+
 # Content`
     const html = decode(source)
     expect(html).toContain('edm-hero')

@@ -13,7 +13,7 @@ import { inlineRefPlugin } from './inline-ref.js'
 import { resolveIncludes } from './include.js'
 import { mathPlugin } from './math.js'
 import { htmlCommentPlugin } from './html-comment.js'
-import { parseDefinitions, parseImageFields, parseDiagram, parseQuestion, shouldInclude } from '../blocks/index.js'
+import { parseDefinitions, parseHeroFields, parseImageFields, parseDiagram, parseQuestion, shouldInclude } from '../blocks/index.js'
 
 export function createParser(): MarkdownIt {
   const md = new MarkdownIt({ html: false, linkify: false })
@@ -169,6 +169,12 @@ function extractRawContent(tokens: any[], openIdx: number, source: string): stri
 
 function parseBlockInternals(block: EdumarkBlock): void {
   switch (block.blockType) {
+    case 'hero': {
+      const heroResult = parseHeroFields(block.content)
+      block.fields = heroResult.fields
+      block.topics = heroResult.topics
+      break
+    }
     case 'definition':
       block.definitions = parseDefinitions(block.content)
       break

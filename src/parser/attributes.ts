@@ -1,7 +1,7 @@
 import type { BlockAttributes, BlockType } from '../types.js'
 
 const VALID_BLOCK_TYPES = new Set<string>([
-  'objective', 'definition', 'key-concept', 'note', 'warning',
+  'hero', 'objective', 'definition', 'key-concept', 'note', 'warning',
   'example', 'exercise', 'application', 'comparison', 'diagram',
   'image', 'question', 'mnemonic', 'history', 'summary',
   'reference', 'aside', 'teacher-only', 'student-only', 'solution', 'math',
