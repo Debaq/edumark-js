@@ -127,6 +127,45 @@ x = x₀ + v·t
 | Ecuación de posición | m{x = x₀ + v·t} | m{x = x₀ + v₀·t + ½·a·t²} |
 :::
 
+:::diagram id="fig-vt-mru-mrua" title="Gráficos v-t para MRU y MRUA"
+Dos gráficos velocidad vs. tiempo lado a lado. El de la izquierda muestra MRU (línea horizontal a velocidad constante). El de la derecha muestra MRUA (línea recta inclinada que parte de v₀ y crece con pendiente igual a la aceleración). En ambos, el área sombreada bajo la curva representa el desplazamiento.
+
+```svg
+<svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- MRU -->
+  <text x="120" y="18" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">MRU</text>
+  <!-- ejes -->
+  <line x1="40" y1="170" x2="230" y2="170" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="40" y1="170" x2="40" y2="25" stroke="currentColor" stroke-width="1.5"/>
+  <text x="135" y="192" text-anchor="middle" font-size="11" fill="currentColor">t (s)</text>
+  <text x="18" y="100" text-anchor="middle" font-size="11" fill="currentColor" transform="rotate(-90,18,100)">v (m/s)</text>
+  <!-- area sombreada -->
+  <rect x="40" y="70" width="180" height="100" fill="currentColor" opacity="0.08"/>
+  <!-- linea v = cte -->
+  <line x1="40" y1="70" x2="220" y2="70" stroke="currentColor" stroke-width="2.5"/>
+  <!-- etiqueta -->
+  <text x="225" y="74" font-size="11" fill="currentColor">v</text>
+  <text x="115" y="130" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.5">Δx = v · t</text>
+
+  <!-- MRUA -->
+  <text x="400" y="18" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">MRUA</text>
+  <!-- ejes -->
+  <line x1="300" y1="170" x2="500" y2="170" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="300" y1="170" x2="300" y2="25" stroke="currentColor" stroke-width="1.5"/>
+  <text x="400" y="192" text-anchor="middle" font-size="11" fill="currentColor">t (s)</text>
+  <text x="278" y="100" text-anchor="middle" font-size="11" fill="currentColor" transform="rotate(-90,278,100)">v (m/s)</text>
+  <!-- area sombreada (trapecio) -->
+  <polygon points="300,170 300,130 490,40 490,170" fill="currentColor" opacity="0.08"/>
+  <!-- linea v = v0 + a·t -->
+  <line x1="300" y1="130" x2="490" y2="40" stroke="currentColor" stroke-width="2.5"/>
+  <!-- etiquetas -->
+  <text x="285" y="134" text-anchor="end" font-size="10" fill="currentColor">v₀</text>
+  <text x="495" y="44" font-size="11" fill="currentColor">v</text>
+  <text x="395" y="140" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.5">pendiente = a</text>
+</svg>
+```
+:::
+
 ---
 
 ## 5. Movimiento Rectilíneo Uniformemente Acelerado (MRUA)
