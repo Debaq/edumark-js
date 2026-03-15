@@ -871,6 +871,8 @@ ${renderMarkdown(block.content)}
     if (block.diagramCode) {
       if (block.diagramCode.language === "mermaid") {
         parts.push(`<div class="edm-diagram-render"><pre class="mermaid">${esc2(block.diagramCode.code)}</pre></div>`);
+      } else if (block.diagramCode.language === "svg") {
+        parts.push(`<div class="edm-diagram-render edm-diagram-svg">${block.diagramCode.code}</div>`);
       } else {
         parts.push(`<div class="edm-diagram-render"><pre class="edm-diagram-code" data-language="${esc2(block.diagramCode.language)}">${esc2(block.diagramCode.code)}</pre></div>`);
       }
