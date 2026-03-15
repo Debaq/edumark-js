@@ -1,0 +1,594 @@
+---
+title: "Neurona y células gliales"
+unit: "I — Generalidades de Neuroanatomía"
+subject: "Neuroanatomía"
+level: "Pregrado"
+author: "[Nombre del docente]"
+version: 1.0
+date: 2025-01
+topics:
+  - Concepto y propiedades de la neurona
+  - Partes de la neurona
+  - Clasificación neuronal
+  - Sinapsis eléctrica y química
+  - Neurotransmisores principales
+  - Células gliales del SNC
+  - Células gliales del SNP
+---
+
+# Neurona y células gliales
+
+:::objective
+Al finalizar este tema el estudiante será capaz de:
+- Definir la neurona como unidad estructural y funcional del sistema nervioso.
+- Describir las partes de la neurona y la función de cada una.
+- Clasificar las neuronas según criterios morfológicos y funcionales.
+- Explicar los mecanismos de la sinapsis eléctrica y la sinapsis química.
+- Identificar los principales neurotransmisores y sus efectos generales.
+- Enumerar y caracterizar las células gliales del SNC y del SNP.
+- Distinguir el rol de la mielina en la conducción nerviosa.
+:::
+
+---
+
+## 1. La neurona
+
+La neurona es la **unidad estructural y funcional del sistema nervioso**. Su especialización la hace idónea para recibir estímulos del entorno, procesarlos e integrarlos, y generar una respuesta que transmite a otras neuronas, músculos o glándulas. Esta capacidad de comunicación se basa en señales tanto eléctricas como químicas.
+
+El sistema nervioso humano contiene aproximadamente **86 000 millones de neuronas**, cada una capaz de establecer entre 1 000 y 10 000 conexiones sinápticas. La complejidad resultante es la base biológica del pensamiento, la percepción, el movimiento y todas las funciones superiores.
+
+:::definition id="def-neurona"
+**Neurona** | Célula altamente especializada del sistema nervioso, responsable de recibir, integrar y transmitir información mediante señales eléctricas (potenciales de acción) y señales químicas (neurotransmisores).
+:::
+
+:::history title="La ironía del Nobel: Golgi contra Cajal" characters="Camillo Golgi (1843–1926) · Santiago Ramón y Cajal (1852–1934)" year="1873–1906"
+En 1873, Camillo Golgi trabajaba en un hospital psiquiátrico en Abbiategrasso, Italia, sin laboratorio propio. Preparaba sus muestras en la cocina del hospital. Un día dejó tejido cerebral en una mezcla de dicromato de potasio y nitrato de plata y lo olvidó. Al recuperarlo, encontró algo que nadie había visto antes: unas pocas neuronas se habían teñido completamente de negro sobre fondo transparente, como árboles en invierno sobre nieve. Por primera vez en la historia era posible ver la silueta completa de una célula nerviosa.
+
+Golgi llamó a su técnica **reazione nera** (reacción negra). Tras años de aplicarla, llegó a una conclusión: las neuronas estaban fusionadas entre sí en una red continua, sin límites individuales. La llamó **teoría reticular**. El sistema nervioso, según Golgi, era un sincitio ininterrumpido.
+
+Santiago Ramón y Cajal, médico aragonés apasionado por el dibujo y la microscopía, tomó el mismo método, lo perfeccionó y lo aplicó con obsesión metódica durante años. Preparación tras preparación, llegó a la conclusión opuesta: cada neurona era una **célula independiente**, separada de las demás por un espacio físico real. Había nacido la **doctrina de la neurona**.
+
+En 1906 el Comité Nobel tomó la decisión más incómoda posible: les otorgó el Premio de Fisiología o Medicina a los dos. En la ceremonia de Estocolmo pronunciaron sus discursos uno tras otro. Golgi, con la medalla en la mano, defendió la teoría reticular sin retroceder ni un paso. Cajal respondió con precisión y sin rencor.
+
+La historia le daría la razón a Cajal. Y la ironía quedaría grabada para siempre en los libros de neurociencia: el método que Golgi inventó fue la herramienta exacta que destruyó su propia teoría.
+:::
+
+### 1.1 Propiedades fundamentales
+
+La neurona se distingue de otras células del organismo por tres propiedades esenciales que hacen posible su función:
+
+:::definition id="def-propiedades-neuronales" multiple
+**Excitabilidad** | Capacidad de responder a estímulos físicos, químicos o eléctricos generando un cambio en el potencial de membrana (potencial de acción) cuando el estímulo supera el umbral de activación.
+**Conductividad** | Capacidad de propagar el potencial de acción a lo largo de su membrana plasmática sin pérdida de intensidad de señal, desde el soma hasta las terminales sinápticas.
+**Secretividad** | Capacidad de liberar neurotransmisores en la hendidura sináptica para comunicarse con neuronas adyacentes, células musculares o glandulares.
+:::
+
+:::mnemonic
+**Las 3 propiedades de la neurona → EXCOSE**
+- **EXC**itabilidad
+- **CO**nductividad
+- **SE**cretividad
+:::
+
+### 1.2 Características metabólicas
+
+:::key-concept id="metabolismo-neuronal"
+Las neuronas son metabólicamente muy exigentes. Dependen casi exclusivamente de glucosa y oxígeno para obtener ATP. Toleran solo **4 a 6 minutos de anoxia** antes de sufrir muerte irreversible por fallo en las bombas iónicas (Na⁺/K⁺-ATPasa).
+:::
+
+:::key-concept id="neurogenesis-adulta"
+Las neuronas del adulto tienen capacidad de división **muy limitada o nula**. La neurogénesis adulta ocurre de forma restringida en la **zona subgranular del hipocampo** y la **zona subventricular del bulbo olfatorio**. Fuera de estas zonas, la muerte neuronal es permanente.
+:::
+
+:::application title="Accidente cerebrovascular (ACV)"
+La dependencia de oxígeno y glucosa explica por qué el ACV isquémico es una emergencia neurológica. Por cada minuto de oclusión de una arteria cerebral media se pierden aproximadamente 1,9 millones de neuronas. La ventana terapéutica para el alteplasa (rtPA) es de **4,5 horas** desde el inicio de los síntomas.
+:::
+
+---
+
+## 2. Partes de la neurona
+
+La neurona posee una arquitectura polarizada, lo que significa que la información fluye en una dirección definida: **dendritas → soma → axón → terminales sinápticas**. Esta polaridad funcional es la base del concepto de la doctrina de la neurona de Ramón y Cajal.
+
+:::diagram id="fig-1-1" title="Partes de una neurona multipolar típica"
+Esquema de una neurona multipolar de tipo motoneurona. Debe mostrar:
+- Soma esférico con núcleo grande, nucléolo prominente y cuerpos de Nissl (punteado basófilo).
+- Múltiples dendritas que emergen del soma, ramificadas, con espinas dendríticas visibles en mayor aumento.
+- Cono axónico (zona de inicio del impulso) entre el soma y el axón.
+- Axón largo con vaina de mielina segmentada y nodos de Ranvier claramente señalados.
+- Terminal sináptica (botón sináptico) con vesículas sinápticas en su interior.
+- Flechas indicando el sentido del impulso nervioso: dendrita → soma → axón → terminal.
+- Leyendas para cada estructura.
+Referencia visual sugerida: Kandel, Principles of Neural Science, 6.ª ed., Fig. 2-2.
+:::
+
+### 2.1 Soma (cuerpo celular)
+
+El soma es el **centro metabólico y trófico** de la neurona. Contiene el núcleo celular con nucléolo prominente (indicativo de alta actividad sintética) y toda la maquinaria biosintética necesaria para mantener la célula y sus prolongaciones, que pueden extenderse hasta un metro de longitud.
+
+:::definition id="def-cuerpos-nissl"
+**Cuerpos de Nissl** | Acumulaciones de retículo endoplásmico rugoso y ribosomas libres visibles con tinción de Nissl (cresil violeta). Representan la alta capacidad de síntesis proteica del soma. Desaparecen en condiciones de lesión axonal (cromatolisis central), lo que indica daño neuronal.
+:::
+
+:::image id="fig-tincion-nissl"
+file: tincNissl_corteza.jpg
+title: "Tinción de Nissl en corteza cerebral"
+description: "Microfotografía de neuronas de la corteza cerebral con tinción de Nissl. Se observan los cuerpos de Nissl como gránulos basófilos azul-violáceos distribuidos en el soma y el inicio de las dendritas. El núcleo aparece como una zona clara con nucléolo central visible. Aumento 400x."
+source: "Snell, Neuroanatomía Clínica, 7.ª ed., lámina 1"
+alt: "Neuronas corticales con tinción de Nissl mostrando cuerpos basófilos en soma"
+:::
+
+**Componentes del soma:**
+- **Núcleo:** grande, esférico, con cromatina dispersa (célula activa). Contiene el DNA y dirige la síntesis proteica.
+- **Nucléolo:** prominente, reflejo de alta síntesis de ARNr y producción ribosómica.
+- **Cuerpos de Nissl:** retículo endoplásmico rugoso. Se extienden hasta las dendritas pero **están ausentes en el axón**.
+- **Aparato de Golgi:** procesa y empaqueta proteínas destinadas a las terminales sinápticas.
+- **Mitocondrias:** abundantes; producen el ATP necesario para las bombas iónicas y la neurotransmisión.
+- **Citoesqueleto:** microfilamentos, microtúbulos y neurofilamentos; mantienen la forma y sirven de vías de transporte axónico.
+
+:::key-concept id="transporte-axonico"
+El **transporte axónico** permite mover organelas y proteínas entre el soma y las terminales. El transporte anterógrado (soma → terminal) es mediado por **kinesina**; el retrógrado (terminal → soma) por **dineína**. Esta vía es utilizada por algunos virus neurotrópicos (rabia, herpes simple) para alcanzar el SNC.
+:::
+
+### 2.2 Dendritas
+
+Las dendritas son extensiones ramificadas del soma que constituyen la **zona receptora** de la neurona. Su árbol dendrítico altamente ramificado crea una superficie enorme para recibir miles de señales sinápticas simultáneas.
+
+:::definition id="def-espinas-dendriticas"
+**Espinas dendríticas** | Pequeñas protrusiones en la membrana de las dendritas que amplían la superficie de contacto sináptico. Son sitios de alta plasticidad: su número y morfología cambian con el aprendizaje y la memoria. Su pérdida se asocia con enfermedades como el Alzheimer y la discapacidad intelectual.
+:::
+
+:::warning
+Las dendritas contienen cuerpos de Nissl y pueden realizar síntesis proteica local. El axón, en cambio, **no posee cuerpos de Nissl** y depende del transporte axónico desde el soma para obtener proteínas. Este detalle es frecuente en preguntas de evaluación.
+:::
+
+### 2.3 Axón
+
+El axón es la **prolongación conductora** de la neurona. Emerge del soma en una región especializada llamada **cono axónico** o zona de inicio del impulso, donde se concentran los canales de Na⁺ voltaje-dependientes necesarios para generar el potencial de acción.
+
+**Características del axón:**
+- Cada neurona posee **un solo axón** (a diferencia de las múltiples dendritas).
+- Puede tener **colaterales** que parten en ángulo recto y permiten comunicarse con múltiples dianas.
+- Su longitud varía desde fracciones de milímetro (interneuronas corticales) hasta más de un metro (motoneuronas que inervan los músculos del pie).
+- En su extremo distal forma el **botón sináptico**, donde se almacenan las vesículas de neurotransmisor.
+
+:::definition id="def-vaina-mielina"
+**Vaina de mielina** | Cubierta lipoproteica que envuelve al axón en segmentos. Está compuesta por capas concéntricas de membrana plasmática del oligodendrocito (SNC) o la célula de Schwann (SNP). Aumenta la velocidad de conducción del potencial de acción de 0,5–2 m/s (fibras amielínicas) hasta 70–120 m/s (fibras gruesas mielínicas).
+:::
+
+:::definition id="def-nodos-ranvier"
+**Nodos de Ranvier** | Interrupciones periódicas de la vaina de mielina donde el axón queda expuesto. Concentran los canales de Na⁺ voltaje-dependientes y son los únicos sitios donde se regenera el potencial de acción. La conducción entre nodos se denomina **conducción saltatoria**.
+:::
+
+:::key-concept id="conduccion-saltatoria"
+La conducción saltatoria es más rápida y más eficiente energéticamente que la conducción continua, porque el potencial de acción "salta" de nodo en nodo en lugar de despolarizar toda la membrana axónica de forma continua.
+:::
+
+:::application title="Esclerosis múltiple (EM)"
+Enfermedad autoinmune que destruye la mielina del SNC (oligodendrocitos). Las placas de desmielinización enlentecen o bloquean la conducción nerviosa, causando síntomas como debilidad, alteraciones visuales (neuritis óptica), parestesias e incontinencia. La RM con gadolinio muestra lesiones en sustancia blanca periventricular, cuerpo calloso y tronco encefálico.
+:::
+
+:::history title="La mielina y el error de 80 años" characters="Robert Remak (1815–1865) · Louis-Antoine Ranvier (1835–1922)" year="1838–1878"
+Durante casi 80 años, los anatomistas creyeron que la mielina era simplemente el **axón mismo**: una sustancia continua y homogénea sin interrupciones. Robert Remak fue el primero en distinguir, en 1838, que existían fibras nerviosas sin esa cubierta blanca, las hoy llamadas fibras amielínicas o fibras de Remak.
+
+Pero la gran corrección vino de Louis-Antoine Ranvier en 1878. Estudiando nervios periféricos con microscopía de alta resolución, Ranvier notó que la vaina blanca no era continua: había pequeñas interrupciones periódicas, anillos de constricción donde el axón quedaba expuesto. Las llamó simplemente "estrangulaciones". Hoy las llamamos **nodos de Ranvier** en su honor.
+
+En ese momento nadie sabía para qué servían esas interrupciones. La función fisiológica, la **conducción saltatoria**, no se comprendería hasta el siglo XX, cuando los experimentos con microelectrodos demostraron que el potencial de acción se regeneraba exclusivamente en esos nodos, saltando de uno a otro a velocidades que la conducción continua nunca podría alcanzar.
+
+Lo que Ranvier vio como una curiosidad anatómica resultó ser uno de los mecanismos de eficiencia más elegantes del sistema nervioso.
+:::
+
+:::image id="fig-nodo-ranvier"
+file: nodo_ranvier_MEB.jpg
+title: "Nodo de Ranvier en microscopía electrónica de barrido"
+description: "Imagen de microscopía electrónica de barrido (MEB) de un axón mielínico, mostrando la vaina de mielina (estructura laminar densa) interrumpida por un nodo de Ranvier central (zona de constricción axónica expuesta). Se aprecia la diferencia de diámetro entre el axón en el nodo y la zona internodal cubierta por mielina. Aumento aproximado 5000x."
+source: "Purves D. et al., Neuroscience, 6.ª ed., Fig. 3-16"
+alt: "Nodo de Ranvier en axón mielínico, microscopía electrónica"
+:::
+
+---
+
+## 3. Clasificación de las neuronas
+
+Las neuronas pueden clasificarse según distintos criterios. Los más utilizados en neuroanatomía son el morfológico (número de prolongaciones) y el funcional (tipo de información que conducen).
+
+### 3.1 Clasificación morfológica
+
+:::comparison title="Clasificación morfológica de las neuronas"
+| Tipo | Prolongaciones | Localización | Ejemplo |
+|---|---|---|---|
+| **Unipolar** | 1 sola (soma sin dendritas) | Solo en invertebrados | — |
+| **Pseudounipolar** | 1 prolongación que se divide en T | Ganglios espinales (SNP) | Neurona sensitiva primaria |
+| **Bipolar** | 1 dendrita + 1 axón | Retina, cóclea, mucosa olfatoria | Células bipolares de retina |
+| **Multipolar** | Múltiples dendritas + 1 axón | La más frecuente en el SNC | Motoneurona, neurona piramidal |
+:::
+
+:::diagram id="fig-1-2" title="Tipos morfológicos de neuronas"
+Cuatro neuronas dibujadas en paralelo para comparar:
+1. Unipolar: soma con una sola prolongación que sale directamente (incluir nota "rara en humanos").
+2. Pseudounipolar: soma con una prolongación en T que se divide en rama central (hacia SNC) y periférica (hacia receptor). Típica de ganglio dorsal de la raíz.
+3. Bipolar: soma central con una dendrita en un polo y un axón en el polo opuesto. Ejemplo: célula bipolar de la retina.
+4. Multipolar: soma con múltiples dendritas cortas y un axón largo con vaina de mielina. La más representada.
+Cada tipo debe estar etiquetado y con flechas indicando soma, dendrita(s) y axón.
+Referencia: Snell, Neuroanatomía Clínica, 7.ª ed., Fig. 1-3.
+:::
+
+### 3.2 Clasificación funcional
+
+:::definition id="def-clasificacion-funcional" multiple
+**Neurona sensitiva (aferente)** | Conduce información desde los receptores periféricos (piel, órganos de los sentidos, vísceras) hacia el SNC. Morfológicamente suelen ser pseudounipolares.
+**Neurona motora (eferente)** | Conduce impulsos desde el SNC hacia los órganos efectores (músculos, glándulas). Morfológicamente son multipolares.
+**Interneurona (de asociación)** | Conectan neuronas entre sí dentro del SNC. Constituyen la gran mayoría de las neuronas del cerebro (~99%). Procesan e integran la información.
+:::
+
+:::mnemonic
+**Sensitiva = Aferente = llega AL SNC → A de Arriba (hacia el centro)**
+**Motora = Eferente = sale DEL SNC → E de Ejecuta (el movimiento)**
+
+Truco: **SAME** → Sensitiva=Aferente · Motora=Eferente
+:::
+
+### 3.3 Clasificación por longitud del axón
+
+:::definition id="def-golgi-tipos" multiple
+**Neuronas de Golgi tipo I** | Axón largo (proyección). Conectan áreas distantes del SNC. Ejemplo: neuronas piramidales de la corteza, células de Purkinje del cerebelo.
+**Neuronas de Golgi tipo II** | Axón corto (locales). Interneuronas de circuitos locales. Constituyen la mayoría de las neuronas cerebrales.
+:::
+
+---
+
+## 4. Sinapsis
+
+La sinapsis es el sitio especializado de comunicación entre dos neuronas, o entre una neurona y su célula diana. Es el sustrato anatómico de todos los procesos neurológicos: reflejos, memoria, aprendizaje, emociones y control motor.
+
+:::history title="El experimento del sueño: cómo se descubrió la transmisión química" characters="Otto Loewi (1873–1961)" year="1921"
+En la noche del sábado de Pascua de 1921, Otto Loewi se despertó con una idea. La anotó en un papel y volvió a dormirse. A la mañana siguiente no podía leer su propia letra. Pasó el día angustiado. La noche siguiente el sueño regresó, y esta vez Loewi no se arriesgó: se levantó, fue directo al laboratorio y comenzó el experimento.
+
+Tomó dos corazones de rana vivos. Al primero le mantuvo el nervio vago conectado; al segundo lo aisló completamente. Estimuló eléctricamente el nervio vago del primer corazón: latió más lento. Hasta ahí, nada nuevo. Pero entonces tomó el líquido que bañaba ese primer corazón y lo transfirió al segundo. El segundo corazón, sin nervio vago, también comenzó a latir más lento.
+
+La conclusión era inevitable: el nervio no actuaba por electricidad directa sino que **liberaba una sustancia química** que producía el efecto. Loewi llamó a esa sustancia *Vagusstoff* (sustancia del vago). Hoy la conocemos como **acetilcolina**, el primer neurotransmisor descubierto.
+
+En 1936 Loewi recibió el Premio Nobel de Fisiología o Medicina junto a Henry Dale. En 1938, tras la anexión de Austria por la Alemania nazi, fue arrestado, obligado a transferir su dinero del Nobel a los nazis, y expulsado del país. Terminó sus días en la Universidad de Nueva York, donde siguió investigando hasta los 85 años.
+
+Su experimento, soñado literalmente, cambió para siempre la comprensión del sistema nervioso.
+:::
+
+:::definition id="def-sinapsis"
+**Sinapsis** | Zona de contacto funcional entre la terminal presináptica de una neurona y la membrana postsináptica de otra célula. Permite la transmisión unidireccional de la señal nerviosa.
+:::
+
+Existen dos tipos fundamentales de sinapsis:
+
+### 4.1 Sinapsis eléctrica
+
+En la sinapsis eléctrica, la corriente iónica pasa directamente de una célula a otra a través de **uniones en hendidura (gap junctions)**, formadas por proteínas llamadas **conexinas**. No requiere neurotransmisor.
+
+**Características:**
+- Transmisión muy rápida (sin demora sináptica)
+- Generalmente bidireccional
+- Sin amplificación de la señal
+- Permite sincronización de grupos neuronales
+- Presente en: músculo cardíaco, músculo liso, algunas neuronas del tronco encefálico y retina
+
+### 4.2 Sinapsis química
+
+Es el tipo más frecuente en el sistema nervioso. La señal eléctrica del potencial de acción se convierte en una señal química (neurotransmisor) que atraviesa la hendidura sináptica y actúa sobre receptores postsinápticos.
+
+:::diagram id="fig-1-3" title="Sinapsis química — secuencia de eventos"
+Diagrama de flujo o secuencia numerada del proceso sináptico químico:
+1. Llegada del potencial de acción al botón presináptico.
+2. Apertura de canales de Ca²⁺ voltaje-dependientes en la membrana presináptica.
+3. Entrada de Ca²⁺ → activación de proteínas SNARE → fusión de vesículas sinápticas con la membrana.
+4. Exocitosis del neurotransmisor hacia la hendidura sináptica (20–40 nm de ancho).
+5. Unión del neurotransmisor a receptores postsinápticos (ionotrópicos o metabotrópicos).
+6. Respuesta postsináptica: PPSE (despolarización) o PPSI (hiperpolarización).
+7. Eliminación del neurotransmisor: recaptación, degradación enzimática o difusión.
+Incluir leyendas para: vesícula sináptica, Ca²⁺, hendidura sináptica, receptor, neurotransmisor.
+Referencia: Kandel, Principles of Neural Science, 6.ª ed., Fig. 5-1.
+:::
+
+**Secuencia de la sinapsis química:**
+1. El potencial de acción llega al botón presináptico
+2. Se abren canales de **Ca²⁺ voltaje-dependientes** → entrada de Ca²⁺
+3. El Ca²⁺ activa proteínas **SNARE** → fusión de vesículas sinápticas con la membrana
+4. **Exocitosis** del neurotransmisor hacia la hendidura sináptica
+5. El neurotransmisor se une a receptores en la membrana postsináptica
+6. Se genera un **potencial postsináptico excitatorio (PPSE)** o **inhibitorio (PPSI)**
+7. El neurotransmisor es eliminado por recaptación, degradación enzimática o difusión
+
+:::definition id="def-ppse-ppsi" multiple
+**PPSE (Potencial Postsináptico Excitatorio)** | Despolarización parcial de la membrana postsináptica que acerca el potencial de membrana al umbral de disparo. Generado por entrada de Na⁺ o Ca²⁺.
+**PPSI (Potencial Postsináptico Inhibitorio)** | Hiperpolarización de la membrana postsináptica que aleja el potencial del umbral. Generado por entrada de Cl⁻ o salida de K⁺.
+:::
+
+:::comparison title="Sinapsis eléctrica vs. sinapsis química"
+| Característica | Sinapsis eléctrica | Sinapsis química |
+|---|---|---|
+| Mediador | Corriente iónica directa | Neurotransmisor |
+| Velocidad | Muy rápida (sin delay) | Demora ~0,5 ms |
+| Dirección | Bidireccional (generalmente) | Unidireccional |
+| Amplificación | No | Sí |
+| Estructura | Uniones en hendidura (conexinas) | Botón pre- y membrana post-sináptica |
+| Plasticidad | Limitada | Alta |
+| Ejemplos | Músculo cardíaco, retina | Mayoría del SNC y SNP |
+:::
+
+### 4.3 Tipos de receptores postsinápticos
+
+:::definition id="def-receptores" multiple
+**Receptores ionotrópicos** | Canal iónico que se abre directamente al unirse el neurotransmisor. Respuesta rápida (milisegundos). Ejemplo: receptores NMDA, AMPA (glutamato), GABA-A, nicotínicos (ACh).
+**Receptores metabotrópicos** | Proteínas acopladas a proteína G. Acción indirecta a través de segundos mensajeros (AMPc, IP3). Respuesta más lenta pero prolongada. Ejemplo: receptores muscarínicos (ACh), receptores de dopamina, GABA-B.
+:::
+
+### 4.4 Principales neurotransmisores
+
+:::comparison title="Neurotransmisores principales del SNC"
+| Neurotransmisor | Tipo | Efecto general | Localización principal |
+|---|---|---|---|
+| **Glutamato** | Aminoácido | Excitatorio | Corteza, hipocampo, cerebelo |
+| **GABA** | Aminoácido | Inhibitorio | Corteza, ganglios basales, cerebelo |
+| **Glicina** | Aminoácido | Inhibitorio | Médula espinal, tronco encefálico |
+| **Acetilcolina** | Amina | Excitatorio (unión NMC) / Variable (SNC) | Núcleo basal de Meynert, unión neuromuscular |
+| **Dopamina** | Monoamina | Modulador (recompensa, motor) | Sustancia negra, área tegmental ventral |
+| **Serotonina** | Monoamina | Modulador (ánimo, sueño) | Núcleos del rafe |
+| **Noradrenalina** | Monoamina | Modulador (atención, alerta) | Locus coeruleus |
+:::
+
+:::application title="Implicaciones farmacológicas"
+Los neurotransmisores son diana de los fármacos neurológicos y psiquiátricos más utilizados: los antidepresivos ISRS actúan sobre la recaptación de serotonina; el levodopa repone dopamina en el Parkinson; las benzodiazepinas potencian el GABA; y la memantina bloquea receptores NMDA de glutamato en el Alzheimer.
+:::
+
+:::warning
+No confundir **neurotransmisor** con **neuromodulador**. Los neuromoduladores (como los neuropéptidos: encefalinas, sustancia P) modifican la respuesta postsináptica a otros neurotransmisores pero no la generan directamente. Actúan a mayor distancia y con efectos más prolongados.
+:::
+
+---
+
+## 5. Células gliales del SNC
+
+Las células gliales (o neuroglia) son las células de soporte del sistema nervioso. Superan en número a las neuronas en una proporción aproximada de **1:1 a 5:1**. A diferencia de las neuronas, **conservan la capacidad de dividirse** en la vida adulta.
+
+:::key-concept id="glia-funciones"
+Las células gliales no generan potenciales de acción, pero participan activamente en la modulación de la sinapsis, el mantenimiento del microambiente iónico, la mielinización, la respuesta inmune y la formación de cicatrices tras lesión.
+:::
+
+:::warning
+Es un error frecuente pensar que las células gliales son solo "soporte pasivo". En realidad, los **astrocitos** participan activamente en la sinapsis (tripartita), en la barrera hematoencefálica y en la regulación del K⁺ extracelular.
+:::
+
+### 5.1 Astrocitos
+
+:::definition id="def-astrocito"
+**Astrocito** | Célula glial más abundante del SNC. Tiene forma estrellada con múltiples prolongaciones. Se divide en astrocito protoplasmático (sustancia gris) y astrocito fibroso (sustancia blanca).
+:::
+
+:::image id="fig-astrocito-gfap"
+file: astrocito_GFAP.jpg
+title: "Astrocitos marcados con GFAP en corteza cerebral"
+description: "Inmunohistoquímica con anticuerpo anti-GFAP (proteína ácida fibrilar glial) en corte de corteza cerebral de ratón. Los astrocitos se visualizan en verde fluorescente con sus prolongaciones irradiando desde el soma. Se aprecian los pies perivasculares en contacto con un capilar sanguíneo. Los núcleos celulares aparecen en azul (DAPI). Aumento 200x."
+source: "Purves D. et al., Neuroscience, 6.ª ed., Fig. 1-3"
+alt: "Astrocitos en corteza cerebral marcados con GFAP (verde) y DAPI (azul)"
+:::
+
+**Funciones del astrocito:**
+- **Soporte estructural** y metabólico de las neuronas (suministro de lactato)
+- **Barrera hematoencefálica (BHE):** los pies perivasculares del astrocito cubren ~99% de la superficie de los capilares cerebrales, induciendo las uniones estrechas del endotelio
+- **Regulación iónica:** captan K⁺ del espacio extracelular tras el potencial de acción (tampón de K⁺)
+- **Recaptación de neurotransmisores:** retiran glutamato y GABA de la hendidura sináptica
+- **Sinapsis tripartita:** el astrocito modula activamente la transmisión sináptica
+- **Cicatriz glial:** tras una lesión, se activan (gliosis reactiva) y forman la cicatriz astrocítica que aísla el daño pero limita la regeneración axónica
+
+:::note
+El marcador histológico de los astrocitos es la **GFAP** (Glial Fibrillary Acidic Protein, proteína ácida fibrilar glial). Su elevación en LCR y sangre es un biomarcador de daño astrocítico en condiciones como el ACV, el traumatismo craneoencefálico y la EM.
+:::
+
+### 5.2 Oligodendrocitos
+
+:::definition id="def-oligodendrocito"
+**Oligodendrocito** | Célula glial responsable de la **mielinización de axones en el SNC**. Un solo oligodendrocito puede mielinar entre 20 y 60 segmentos axónicos de distintas neuronas simultáneamente.
+:::
+
+**Funciones:**
+- Producción y mantenimiento de la vaina de mielina en el SNC
+- Aislamiento eléctrico del axón para conducción saltatoria
+- Soporte trófico al axón
+
+:::comparison title="Oligodendrocito (SNC) vs. célula de Schwann (SNP)"
+| Característica | Oligodendrocito (SNC) | Célula de Schwann (SNP) |
+|---|---|---|
+| Axones que mielina | 20–60 (distintos axones) | 1 solo axón (un segmento) |
+| Origen embriológico | Tubo neural (ectodermo) | Cresta neural |
+| Regeneración axónica | No favorece | Sí favorece (bandas de Büngner) |
+| Marcador | MBP, CNPasa | S-100, EMA |
+| Lesión asociada | Esclerosis múltiple | Síndrome de Guillain-Barré |
+:::
+
+:::application title="Esclerosis múltiple (desmielinización SNC)"
+El proceso autoinmune destruye los oligodendrocitos del SNC, dejando axones desnudos que no conducen el potencial de acción. Las "placas" de desmielinización se visualizan en RM como hiperintensidades en T2/FLAIR, especialmente en sustancia blanca periventricular, cuerpo calloso y nervios ópticos.
+:::
+
+### 5.3 Microglia
+
+:::definition id="def-microglia"
+**Microglia** | Células de origen mesodérmico (macrófagos tisulares del SNC) que constituyen el sistema inmune innato del cerebro. En condiciones normales son "ramificadas" y monitorean constantemente el parénquima. Ante daño se activan adoptando morfología ameboide.
+:::
+
+**Funciones:**
+- Vigilancia inmunológica del SNC (estado ramificado)
+- Fagocitosis de detritos celulares, patógenos y sinapsis (poda sináptica)
+- Presentación de antígenos
+- Producción de citocinas pro- y antiinflamatorias
+- Participan en la poda sináptica durante el desarrollo
+
+:::application title="Neuroinflamación y enfermedades neurodegenerativas"
+La activación crónica de la microglia (neuroinflamación) es un hallazgo constante en el Alzheimer, el Parkinson y la ELA. La microglia activada libera IL-1β, TNF-α y radicales libres que contribuyen al daño neuronal progresivo.
+:::
+
+### 5.4 Células ependimarias
+
+:::definition id="def-celulas-ependimarias"
+**Células ependimarias** | Epitelio cúbico o cilíndrico ciliado que recubre los ventrículos cerebrales y el canal central de la médula espinal. Sus cilios participan en la circulación del líquido cefalorraquídeo (LCR).
+:::
+
+**Funciones:**
+- Recubrimiento de cavidades ventriculares
+- Participación en la circulación del LCR
+- Forman el **plexo coroideo** (células ependimarias modificadas que producen LCR)
+- Células ependimarias de la zona subventricular participan en neurogénesis adulta
+
+:::image id="fig-ependimo"
+file: ependimo_HE.jpg
+title: "Epéndimo ventricular en corte histológico"
+description: "Corte histológico de la pared ventricular con tinción hematoxilina-eosina. Se observa el epitelio ependimario pseudoestratificado de células cilíndricas que tapiza la cavidad ventricular (espacio en blanco en la parte superior). Por debajo se aprecia el parénquima cerebral con cuerpos celulares de astrocitos. Aumento 200x."
+source: "Netter's Neuroscience, 3.ª ed., lámina 2.1"
+alt: "Epitelio ependimario tapizando la cavidad ventricular"
+:::
+
+---
+
+## 6. Células gliales del SNP
+
+En el sistema nervioso periférico, las funciones de soporte y mielinización son realizadas por dos tipos celulares principales: las células de Schwann y las células satélite.
+
+### 6.1 Células de Schwann
+
+:::definition id="def-celula-schwann"
+**Célula de Schwann** | Principal célula glial del SNP. Mielina los axones periféricos. A diferencia del oligodendrocito, **cada célula de Schwann mielina un solo segmento de un solo axón**.
+:::
+
+:::image id="fig-schwann-met"
+file: celula_schwann_MET.jpg
+title: "Célula de Schwann en microscopía electrónica de transmisión"
+description: "Imagen de microscopía electrónica de transmisión (MET) de un nervio periférico en corte transversal. Se observan axones mielínicos rodeados por las capas laminares de mielina producidas por la célula de Schwann (láminas electrodensas concéntricas). En el centro de cada perfil circular se distingue el axoplasma claro con microtúbulos y neurofilamentos. Aumento aproximado 10 000x."
+source: "Kandel ER, Principles of Neural Science, 6.ª ed., Fig. 4-3"
+alt: "Axones mielínicos en corte transversal, microscopía electrónica"
+:::
+
+**Funciones:**
+- Mielinización de axones periféricos (fibras mielínicas)
+- Envoltura de axones amielínicos (fibras C, tipo Remak)
+- **Regeneración axónica:** tras lesión nerviosa periférica, las células de Schwann forman las **bandas de Büngner**, canales que guían el crecimiento axónico regenerativo a velocidad de ~1–3 mm/día
+
+:::note
+La capacidad regenerativa del SNP se debe en gran parte a las células de Schwann. En el SNC, los oligodendrocitos no forman estructuras guía equivalentes, y además producen moléculas inhibidoras de la regeneración axónica (Nogo, MAG), lo que explica la dificultad de recuperación tras lesiones medulares.
+:::
+
+:::application title="Síndrome de Guillain-Barré (SGB)"
+Polineuropatía autoinmune desmielinizante del SNP. El sistema inmune ataca la mielina de las células de Schwann, causando debilidad ascendente, arreflexia y, en casos graves, insuficiencia respiratoria. Requiere hospitalización y tratamiento con inmunoglobulinas IV o plasmaféresis.
+:::
+
+### 6.2 Células satélite
+
+:::definition id="def-celulas-satelite"
+**Células satélite** | Células gliales que rodean los somas de las neuronas en los **ganglios del SNP** (ganglios espinales y ganglios autonómicos). Son el equivalente periférico de los astrocitos.
+:::
+
+**Funciones:**
+- Soporte metabólico y estructural de los somas neuronales en los ganglios
+- Regulación del microambiente iónico periganglionar
+- Participan en la sensibilización periférica en condiciones de dolor crónico
+
+---
+
+## 7. Comparación global: células gliales
+
+:::comparison title="Resumen comparativo de células gliales"
+| Célula glial | Sistema | Función principal | Lesión asociada |
+|---|---|---|---|
+| **Astrocito** | SNC | BHE, soporte metabólico, tampón K⁺ | Gliosis, astrocitoma |
+| **Oligodendrocito** | SNC | Mielinización (20–60 axones) | Esclerosis múltiple |
+| **Microglia** | SNC | Inmunidad innata, fagocitosis | Neuroinflamación (Alzheimer, Parkinson) |
+| **Célula ependimaria** | SNC | Recubrimiento ventricular, producción LCR | Ependimoma |
+| **Célula de Schwann** | SNP | Mielinización (1 axón), regeneración | Síndrome de Guillain-Barré, schwannoma |
+| **Célula satélite** | SNP | Soporte de somas ganglionares | Sensibilización en dolor crónico |
+:::
+
+:::mnemonic
+**Glía del SNC → A-O-M-E**
+- **A**strocito → soporte y BHE
+- **O**ligodendrocito → mielina SNC
+- **M**icroglia → inmunidad
+- **E**pendimaria → ventrículos
+
+**Glía del SNP → S-S**
+- **S**chwann → mielina SNP
+- **S**atélite → ganglios
+:::
+
+---
+
+:::summary
+- La neurona es la unidad estructural y funcional del SN, con las propiedades de excitabilidad, conductividad y secretividad (EXCOSE).
+- Se compone de soma (centro metabólico), dendritas (receptoras) y axón (conductor). La información fluye en un solo sentido: dendrita → soma → axón → terminal.
+- Los cuerpos de Nissl (RER) están en el soma y dendritas, pero **ausentes en el axón**.
+- Las neuronas se clasifican morfológicamente (unipolar, pseudounipolar, bipolar, multipolar) y funcionalmente (sensitiva/aferente, motora/eferente, interneurona). Regla SAME.
+- La vaina de mielina permite la conducción saltatoria (nodos de Ranvier), aumentando la velocidad de 2 m/s hasta 120 m/s.
+- La sinapsis química es la más frecuente: requiere Ca²⁺, exocitosis de vesículas sinápticas, neurotransmisor y receptores ionotrópicos o metabotrópicos.
+- Las células gliales del SNC son: astrocito, oligodendrocito, microglia y células ependimarias (mnemónico: AOME).
+- Las del SNP son: células de Schwann (mielinización + regeneración) y células satélite (soporte ganglionar).
+- La diferencia clave entre oligodendrocito y célula de Schwann: uno mielina 20–60 axones distintos (SNC); la otra mielina 1 segmento de 1 axón (SNP), y además favorece la regeneración.
+:::
+
+---
+
+:::question type="open" id="q-sinapsis-quimica"
+1. Describa la secuencia de eventos que ocurren durante la sinapsis química, desde la llegada del potencial de acción al botón presináptico hasta la eliminación del neurotransmisor.
+2. ¿Por qué la conducción saltatoria es más eficiente energéticamente que la conducción continua?
+3. Compare la capacidad regenerativa del SNP con la del SNC. ¿Qué rol cumplen las células gliales en este proceso?
+:::
+
+:::question type="choice" id="q-mielina-snc"
+¿Qué célula glial del SNC es responsable de la producción de la vaina de mielina?
+
+~ Astrocito protoplasmático # Los astrocitos tienen funciones de soporte y BHE, no de mielinización
+~ Célula de Schwann # La célula de Schwann mielina en el SNP, no en el SNC
+= Oligodendrocito # Correcto — el oligodendrocito mielina entre 20 y 60 segmentos axónicos en el SNC
+~ Microglia # La microglia cumple funciones inmunitarias, no de mielinización
+:::
+
+:::question type="choice" id="q-pseudounipolar"
+Una neurona de un ganglio de la raíz dorsal (sensitiva primaria) se clasifica morfológicamente como:
+
+~ Multipolar # Las multipolares tienen múltiples dendritas y son típicas de motoneuronas
+= Pseudounipolar # Correcto — tiene una sola prolongación que se divide en T (rama central y periférica)
+~ Bipolar # Las bipolares tienen una dendrita y un axón en polos opuestos (retina, cóclea)
+~ Unipolar # Las unipolares verdaderas solo existen en invertebrados
+:::
+
+:::question type="choice" id="q-calcio-exocitosis"
+¿Qué ion cuya entrada a la terminal presináptica es indispensable para desencadenar la exocitosis del neurotransmisor?
+
+= Ca²⁺ # Correcto — el calcio activa las proteínas SNARE que median la fusión vesicular
+~ Na⁺ # El sodio participa en el potencial de acción pero no directamente en la exocitosis
+~ K⁺ # El potasio participa en la repolarización, no en la exocitosis
+~ Cl⁻ # El cloro participa en potenciales inhibitorios postsinápticos
+:::
+
+:::question type="case" id="q-esclerosis-multiple"
+Paciente de 28 años, sexo femenino, que consulta por episodio de pérdida visual en ojo derecho de 3 días de evolución, con recuperación espontánea, seguido 6 meses después de parestesias en extremidades inferiores y fatiga. La RM cerebral muestra múltiples lesiones hiperintensas en T2 periventriculares y en cuerpo calloso.
+
+a) ¿Qué tipo celular está siendo dañado en esta paciente?
+b) ¿Qué mecanismo explica la lentificación de la conducción nerviosa en esta enfermedad?
+c) ¿Por qué los síntomas pueden ser fluctuantes y remitentes en etapas iniciales?
+
+= a) Los oligodendrocitos del SNC, que producen y mantienen la vaina de mielina. La destrucción autoinmune de estas células causa desmielinización.
+= b) La pérdida de mielina elimina la conducción saltatoria. Sin los segmentos internodales aislantes, el potencial de acción debe propagarse de forma continua o se bloquea, lo que enlentece o interrumpe la transmisión nerviosa.
+= c) En etapas iniciales, los oligodendrocitos sobrevivientes pueden remielinizar parcialmente los axones dañados, y la inflamación aguda (edema) puede resolverse, permitiendo recuperación funcional transitoria. Con el tiempo, la capacidad de reparación se agota y el daño axónico se vuelve irreversible.
+:::
+
+:::question type="open" id="q-cromatolisis"
+Explique por qué los cuerpos de Nissl desaparecen del soma neuronal tras una lesión axónica (cromatolisis central). ¿Qué proceso celular refleja este cambio morfológico?
+
+= La cromatolisis central refleja la reorganización del retículo endoplásmico rugoso (cuerpos de Nissl) hacia la producción masiva de proteínas estructurales necesarias para la reparación axónica. Los ribosomas se disgregan del RER y se dispersan como ribosomas libres. El soma se hincha, el núcleo se desplaza a la periferia y los cuerpos de Nissl desaparecen de la zona central. Este cambio morfológico indica que la neurona ha pasado de un modo de "transmisión" a un modo de "reparación", priorizando la síntesis de proteínas del citoesqueleto (tubulina, actina) sobre los neurotransmisores y receptores.
+:::
+
+---
+
+:::reference
+- Kandel ER, Koester JD, Mack SH, Siegelbaum SA. *Principles of Neural Science*. 6.ª ed. McGraw-Hill; 2021.
+- Purves D, Augustine GJ, Fitzpatrick D, et al. *Neuroscience*. 6.ª ed. Sinauer Associates; 2018.
+- Snell RS. *Neuroanatomía Clínica*. 7.ª ed. Wolters Kluwer; 2014.
+- Netter FH. *Atlas de Neurociencia*. 3.ª ed. Elsevier; 2022.
+- Bear MF, Connors BW, Paradiso MA. *Neurociencia: La exploración del cerebro*. 4.ª ed. Wolters Kluwer; 2016.
+- Brodal P. *The Central Nervous System*. 5.ª ed. Oxford University Press; 2016.
+:::

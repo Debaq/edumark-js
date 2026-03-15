@@ -1,0 +1,310 @@
+import MarkdownIt from 'markdown-it'
+import type { EdumarkBlock } from '../types.js'
+import { mathPlugin, renderMathBlock } from '../parser/math.js'
+
+const inlineMd = new MarkdownIt({ html: false })
+inlineMd.use(mathPlugin)
+inlineMd.enable('table')
+
+function renderInline(text: string): string {
+  return inlineMd.renderInline(text)
+}
+
+function renderMarkdown(text: string): string {
+  return inlineMd.render(text)
+}
+
+function id(block: EdumarkBlock): string {
+  return block.attributes.id ? ` id="${esc(block.attributes.id)}"` : ''
+}
+
+function esc(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
+
+const ICONS: Record<string, string> = {
+  'objective': '🎯',
+  'definition': '📖',
+  'key-concept': '💡',
+  'note': '📝',
+  'warning': '⚠️',
+  'example': '✏️',
+  'exercise': '🧩',
+  'application': '🔬',
+  'comparison': '⚖️',
+  'diagram': '📊',
+  'image': '🖼️',
+  'question': '❓',
+  'mnemonic': '🧠',
+  'history': '📜',
+  'summary': '📋',
+  'reference': '📚',
+  'aside': '💬',
+  'teacher-only': '👨‍🏫',
+  'student-only': '🎓',
+  'solution': '✅',
+  'math': '📐',
+}
+
+const LABELS: Record<string, string> = {
+  'objective': 'Objetivos de aprendizaje',
+  'definition': 'Definición',
+  'key-concept': 'Concepto clave',
+  'note': 'Nota',
+  'warning': 'Advertencia',
+  'example': 'Ejemplo',
+  'exercise': 'Ejercicio',
+  'application': 'Aplicación',
+  'comparison': 'Comparación',
+  'diagram': 'Diagrama',
+  'image': 'Figura',
+  'question': 'Pregunta',
+  'mnemonic': 'Mnemotécnico',
+  'history': 'Contexto histórico',
+  'summary': 'Resumen del capítulo',
+  'reference': 'Referencias bibliográficas',
+  'aside': 'Dato adicional',
+  'teacher-only': 'Solo para el docente',
+  'student-only': 'Actividad del estudiante',
+  'solution': 'Solución',
+  'math': 'Ecuación',
+}
+
+function blockCard(block: EdumarkBlock, inner: string, extraClass?: string): string {
+  const type = block.blockType
+  const icon = ICONS[type] || ''
+  const label = LABELS[type] || type
+  const title = block.attributes.title as string | undefined
+  const cls = extraClass ? ` ${extraClass}` : ''
+
+  return `<article class="edm-card edm-${type}${cls}"${id(block)} role="region" aria-label="${esc(label)}">
+<header class="edm-card-header">
+  <span class="edm-card-icon" aria-hidden="true">${icon}</span>
+  <span class="edm-card-label">${esc(label)}</span>
+  ${title ? `<span class="edm-card-title">${esc(title)}</span>` : ''}
+</header>
+<div class="edm-card-body">
+${inner}
+</div>
+</article>\n`
+}
+
+export function renderBlock(block: EdumarkBlock, childrenHtml: string): string {
+  const renderer = RENDERERS[block.blockType]
+  if (renderer) return renderer(block, childrenHtml)
+  return renderGeneric(block, childrenHtml)
+}
+
+function renderGeneric(block: EdumarkBlock, childrenHtml: string): string {
+  return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+}
+
+const RENDERERS: Record<string, (block: EdumarkBlock, childrenHtml: string) => string> = {
+  objective(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  definition(block, childrenHtml) {
+    const defs = block.definitions || []
+    if (defs.length === 0) return renderGeneric(block, '')
+
+    const items = defs.map(d =>
+      `<div class="edm-def-entry">
+  <dt>${renderInline(d.term)}</dt>
+  <dd>${renderInline(d.definition)}</dd>
+</div>`
+    ).join('\n')
+
+    return blockCard(block, `<dl class="edm-def-list">\n${items}\n</dl>${childrenHtml}`)
+  },
+
+  'key-concept'(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  warning(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  note(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  example(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  exercise(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  solution(block) {
+    return `<details class="edm-card edm-solution">
+<summary class="edm-card-header">
+  <span class="edm-card-icon" aria-hidden="true">${ICONS.solution}</span>
+  <span class="edm-card-label">${LABELS.solution}</span>
+  <span class="edm-solution-chevron" aria-hidden="true"></span>
+</summary>
+<div class="edm-card-body">
+${renderMarkdown(block.content)}
+</div>
+</details>\n`
+  },
+
+  application(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  comparison(block, childrenHtml) {
+    return blockCard(block, `<div class="edm-table-wrap">${renderMarkdown(block.content)}</div>${childrenHtml}`)
+  },
+
+  image(block) {
+    const f = block.fields || {}
+    const src = f.file || ''
+    const alt = f.alt || f.title || ''
+    const title = f.title || ''
+    const desc = f.description || ''
+    const source = f.source || ''
+
+    let captionInner = ''
+    if (title) captionInner += `<strong>${esc(title)}</strong>`
+    if (desc) captionInner += (captionInner ? '<br>' : '') + `<span class="edm-fig-desc">${esc(desc)}</span>`
+    if (source) captionInner += (captionInner ? '<br>' : '') + `<cite class="edm-fig-source">${esc(source)}</cite>`
+
+    const inner = `<figure class="edm-fig">
+  <div class="edm-fig-frame"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></div>
+  ${captionInner ? `<figcaption>${captionInner}</figcaption>` : ''}
+</figure>`
+
+    return blockCard(block, inner)
+  },
+
+  diagram(block) {
+    const parts: string[] = []
+
+    if (block.diagramCode) {
+      if (block.diagramCode.language === 'mermaid') {
+        parts.push(`<div class="edm-diagram-render"><pre class="mermaid">${esc(block.diagramCode.code)}</pre></div>`)
+      } else {
+        parts.push(`<div class="edm-diagram-render"><pre class="edm-diagram-code" data-language="${esc(block.diagramCode.language)}">${esc(block.diagramCode.code)}</pre></div>`)
+      }
+    }
+
+    if (block.description) {
+      const showClass = block.diagramCode ? ' edm-diagram-fallback' : ''
+      parts.push(`<div class="edm-diagram-description${showClass}">${renderMarkdown(block.description)}</div>`)
+    }
+
+    return blockCard(block, parts.join('\n'))
+  },
+
+  question(block) {
+    const type = (block.attributes.type as string) || 'open'
+    const parts: string[] = []
+
+    const typeLabels: Record<string, string> = {
+      choice: 'Selección múltiple',
+      'true-false': 'Verdadero o falso',
+      open: 'Desarrollo',
+      case: 'Caso aplicado',
+    }
+
+    parts.push(`<div class="edm-q-type-badge">${typeLabels[type] || type}</div>`)
+
+    if (block.content) {
+      parts.push(`<div class="edm-q-stem">${renderMarkdown(block.content)}</div>`)
+    }
+
+    if (type === 'choice') {
+      const options = block.options || []
+      const multipleCorrect = options.filter(o => o.correct).length > 1
+      const inputType = multipleCorrect ? 'checkbox' : 'radio'
+      const name = block.attributes.id || 'q'
+
+      parts.push('<div class="edm-q-options">')
+      for (let idx = 0; idx < options.length; idx++) {
+        const opt = options[idx]
+        const letter = String.fromCharCode(97 + idx) // a, b, c, d...
+        parts.push(`<label class="edm-q-option" data-correct="${opt.correct}">
+  <input type="${inputType}" name="${esc(name)}">
+  <span class="edm-q-letter">${letter}</span>
+  <span class="edm-q-text">${renderInline(opt.text)}</span>
+</label>`)
+        if (opt.feedback) {
+          parts.push(`<div class="edm-q-feedback" hidden>${renderInline(opt.feedback)}</div>`)
+        }
+      }
+      parts.push('</div>')
+    } else if (type === 'true-false') {
+      const answer = (block.answers && block.answers[0]) || ''
+      const name = block.attributes.id || 'q'
+      const opts = block.options || []
+      parts.push('<div class="edm-q-options">')
+      parts.push(`<label class="edm-q-option" data-correct="${answer === 'true'}">
+  <input type="radio" name="${esc(name)}">
+  <span class="edm-q-letter">V</span>
+  <span class="edm-q-text">Verdadero</span>
+</label>`)
+      parts.push(`<label class="edm-q-option" data-correct="${answer === 'false'}">
+  <input type="radio" name="${esc(name)}">
+  <span class="edm-q-letter">F</span>
+  <span class="edm-q-text">Falso</span>
+</label>`)
+      parts.push('</div>')
+      if (opts[0]?.feedback) {
+        parts.push(`<div class="edm-q-feedback" hidden>${renderInline(opts[0].feedback)}</div>`)
+      }
+    } else if (type === 'open' || type === 'case') {
+      if (block.answers && block.answers.length > 0) {
+        parts.push(`<details class="edm-q-answer">
+<summary>Ver respuesta modelo</summary>
+<div class="edm-q-answer-body">
+${block.answers.map(a => renderMarkdown(a)).join('\n')}
+</div>
+</details>`)
+      }
+    }
+
+    return blockCard(block, parts.join('\n'))
+  },
+
+  mnemonic(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  history(block) {
+    let meta = ''
+    if (block.attributes.characters || block.attributes.year) {
+      const metaParts: string[] = []
+      if (block.attributes.characters) metaParts.push(`<span class="edm-hist-who"><span aria-hidden="true">👤</span> ${esc(block.attributes.characters as string)}</span>`)
+      if (block.attributes.year) metaParts.push(`<span class="edm-hist-when"><span aria-hidden="true">📅</span> ${esc(block.attributes.year as string)}</span>`)
+      meta = `<div class="edm-hist-meta">${metaParts.join('')}</div>\n`
+    }
+    return blockCard(block, `${meta}${renderMarkdown(block.content)}`)
+  },
+
+  summary(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  reference(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  aside(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  'teacher-only'(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  'student-only'(block, childrenHtml) {
+    return blockCard(block, `${renderMarkdown(block.content)}${childrenHtml}`)
+  },
+
+  math(block) {
+    return blockCard(block, renderMathBlock(block.content))
+  },
+}

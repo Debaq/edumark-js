@@ -1,0 +1,302 @@
+---
+title: "Cinemática: el estudio del movimiento"
+author: "Ejemplo Edumark"
+version: 1.0
+date: 2026-03
+subject: "Física General"
+level: "Pregrado"
+unit: "I — Mecánica"
+topics:
+  - Posición y desplazamiento
+  - Velocidad media e instantánea
+  - Aceleración
+  - Movimiento rectilíneo uniforme (MRU)
+  - Movimiento rectilíneo uniformemente acelerado (MRUA)
+  - Caída libre
+---
+
+# Cinemática: el estudio del movimiento
+
+:::objective
+Al finalizar este capítulo el estudiante será capaz de:
+- Distinguir entre posición, desplazamiento y distancia recorrida.
+- Calcular velocidad media e instantánea.
+- Resolver problemas de MRU y MRUA.
+- Aplicar las ecuaciones de caída libre.
+- Interpretar gráficos posición-tiempo y velocidad-tiempo.
+:::
+
+---
+
+## 1. Posición y desplazamiento
+
+La **cinemática** es la rama de la mecánica que describe el movimiento de los cuerpos sin considerar las causas que lo producen. Para describir el movimiento necesitamos definir un sistema de referencia.
+
+:::definition id="def-posicion"
+**Posición** | Coordenada que indica la ubicación de un objeto respecto a un punto de referencia (origen) en un instante dado. Es una magnitud vectorial. Se representa como m{x(t)} en una dimensión.
+:::
+
+:::definition id="def-desplazamiento"
+**Desplazamiento** | Cambio en la posición de un objeto: m{Δx = x_f − x_i}. Es un vector que va del punto inicial al punto final, independiente de la trayectoria seguida.
+:::
+
+:::warning
+No confundir **desplazamiento** con **distancia recorrida**. El desplazamiento es un vector (tiene dirección y puede ser negativo); la distancia es un escalar (siempre positiva). Un corredor que da una vuelta completa a una pista de 400 m tiene distancia recorrida = 400 m pero desplazamiento = 0.
+:::
+
+:::diagram id="fig-desplazamiento" title="Desplazamiento vs. distancia recorrida"
+Representación en una recta numérica (eje x):
+- Punto A en m{x = 2 m} (posición inicial)
+- Punto B en m{x = 8 m} (posición intermedia)
+- Punto C en m{x = 5 m} (posición final)
+- Trayectoria: A → B → C
+- Desplazamiento: flecha recta de A a C (m{Δx = 3 m})
+- Distancia recorrida: m{6 m + 3 m = 9 m}
+
+```mermaid
+graph LR
+    A["A (x=2m)"] -->|"6 m"| B["B (x=8m)"]
+    B -->|"3 m"| C["C (x=5m)"]
+    A -. "Δx = 3 m" .-> C
+```
+:::
+
+---
+
+## 2. Velocidad
+
+:::definition id="def-velocidad-media"
+**Velocidad media** | Cociente entre el desplazamiento y el intervalo de tiempo: m{v̄ = Δx/Δt}. Es una magnitud vectorial. Sus unidades en el SI son m/s.
+:::
+
+:::definition id="def-velocidad-instantanea"
+**Velocidad instantánea** | Límite de la velocidad media cuando el intervalo de tiempo tiende a cero: m{v = lím(Δt→0) Δx/Δt = dx/dt}. Corresponde a la pendiente de la curva posición-tiempo en cada instante.
+:::
+
+:::key-concept id="pendiente-xt"
+En un gráfico posición vs. tiempo, la **pendiente** de la curva en cualquier punto es la velocidad instantánea. Una recta indica velocidad constante; una curva indica aceleración.
+:::
+
+:::example title="Cálculo de velocidad media"
+Un ciclista parte de la posición m{x₁ = 2 km} en m{t₁ = 0 min} y llega a m{x₂ = 14 km} en m{t₂ = 30 min}.
+
+:::math
+v̄ = Δx/Δt = (14 − 2)/(30 − 0) km/min = 12/30 = 0,4 km/min = 24 km/h
+:::
+:::
+
+:::history title="Galileo y la medición del movimiento" characters="Galileo Galilei" year="1604"
+En la Italia del siglo XVII no existían cronómetros precisos. Galileo necesitaba medir tiempos con exactitud para estudiar la caída de los cuerpos, pero los relojes de su época eran demasiado imprecisos.
+
+Su solución fue ingeniosa: en lugar de dejar caer objetos verticalmente (demasiado rápido para medir), construyó planos inclinados pulidos para "diluir" la gravedad. Usaba un recipiente de agua con un pequeño orificio: el agua que salía durante la caída se pesaba, y el peso del agua era proporcional al tiempo transcurrido.
+
+Con este método rudimentario demostró que la distancia recorrida en caída libre es proporcional al cuadrado del tiempo (m{d ∝ t²}), una de las primeras leyes cuantitativas de la física y la base de la cinemática moderna.
+:::
+
+---
+
+## 3. Aceleración
+
+:::definition id="def-aceleracion"
+**Aceleración** | Tasa de cambio de la velocidad respecto al tiempo: m{a = Δv/Δt}. En el SI se mide en m/s². Puede ser positiva (aceleración), negativa (desaceleración) o cero (velocidad constante).
+:::
+
+:::note
+En el lenguaje cotidiano "acelerar" significa ir más rápido. En física, una aceleración negativa no significa necesariamente frenar — depende de la dirección del movimiento. Un objeto que se mueve hacia la izquierda y acelera hacia la izquierda tiene velocidad negativa y aceleración negativa, pero su rapidez aumenta.
+:::
+
+---
+
+## 4. Movimiento Rectilíneo Uniforme (MRU)
+
+:::key-concept id="mru"
+En el MRU la velocidad es constante (m{a = 0}). La posición varía linealmente con el tiempo:
+
+:::math
+x = x₀ + v·t
+:::
+:::
+
+:::comparison title="MRU vs. MRUA"
+| Característica | MRU | MRUA |
+|---|---|---|
+| Velocidad | Constante | Cambia uniformemente |
+| Aceleración | 0 | Constante (≠ 0) |
+| Gráfico x-t | Recta | Parábola |
+| Gráfico v-t | Recta horizontal | Recta inclinada |
+| Ecuación de posición | m{x = x₀ + v·t} | m{x = x₀ + v₀·t + ½·a·t²} |
+:::
+
+---
+
+## 5. Movimiento Rectilíneo Uniformemente Acelerado (MRUA)
+
+Las ecuaciones del MRUA son:
+
+:::math
+v = v₀ + a·t
+x = x₀ + v₀·t + ½·a·t²
+v² = v₀² + 2·a·(x − x₀)
+:::
+
+:::mnemonic
+**Las 3 ecuaciones del MRUA — cada una omite una variable:**
+- Ecuación 1 omite **posición** (no aparece m{x})
+- Ecuación 2 omite **velocidad final** (no aparece m{v})
+- Ecuación 3 omite **tiempo** (no aparece m{t})
+
+Truco: identifica qué dato te falta en el problema y usa la ecuación que no lo necesita.
+:::
+
+:::exercise id="ex-mrua-01" title="Frenado de un automóvil"
+Un automóvil circula a 90 km/h cuando el conductor frena uniformemente y se detiene en 5 segundos. Calcule:
+a) La aceleración de frenado.
+b) La distancia recorrida durante el frenado.
+
+:::solution
+Datos: m{v₀ = 90 km/h = 25 m/s}, m{v = 0 m/s}, m{t = 5 s}
+
+a) m{a = (v − v₀)/t = (0 − 25)/5 = −5 m/s²}
+
+b) m{x = v₀·t + ½·a·t² = 25·5 + ½·(−5)·5² = 125 − 62,5 = 62,5 m}
+:::
+:::
+
+:::application title="Distancia de frenado en seguridad vial"
+La distancia de frenado es crítica en ingeniería de tránsito. A 90 km/h, el automóvil del ejemplo necesita 62,5 m para detenerse — sin contar el tiempo de reacción del conductor (≈ 1 s), que agrega otros 25 m. La distancia total de detención sería ~87,5 m. Este cálculo determina la separación mínima entre vehículos y la longitud de las zonas de frenado en autopistas.
+:::
+
+---
+
+## 6. Caída libre
+
+:::key-concept id="caida-libre"
+La caída libre es un caso particular de MRUA donde la aceleración es la gravedad:
+
+:::math
+a = g ≈ 9,8 m/s²
+:::
+
+En ausencia de resistencia del aire, todos los cuerpos caen con la misma aceleración independientemente de su masa.
+:::
+
+:::aside title="¿Sabías que...?"
+En 1971, el astronauta David Scott dejó caer simultáneamente un martillo y una pluma en la Luna (sin atmósfera). Ambos llegaron al suelo exactamente al mismo tiempo, confirmando la predicción de Galileo 367 años después, pero esta vez en otro mundo.
+:::
+
+:::exercise id="ex-caida-01" title="Objeto que cae desde un edificio"
+Se deja caer una pelota desde el techo de un edificio de 45 m de altura (m{v₀ = 0}). Calcule:
+a) El tiempo que tarda en llegar al suelo.
+b) La velocidad con la que impacta.
+(Use m{g = 10 m/s²} para simplificar)
+
+:::solution
+Datos: m{y₀ = 45 m}, m{v₀ = 0}, m{a = g = 10 m/s²}
+
+a) m{y = ½·g·t²} → m{45 = ½·10·t²} → m{t² = 9} → **t = 3 s**
+
+b) m{v = g·t = 10·3 = 30 m/s} (108 km/h)
+:::
+:::
+
+:::diagram id="fig-caida-libre" title="Posiciones sucesivas en caída libre"
+Diagrama vertical mostrando un objeto en caída libre:
+- Eje vertical con marcas cada segundo (m{t = 0, 1, 2, 3 s})
+- Posiciones del objeto: 0 m, 5 m, 20 m, 45 m
+- Distancias entre posiciones crecientes (5 m, 15 m, 25 m)
+- Ilustra visualmente que la separación entre posiciones aumenta con el tiempo
+
+```mermaid
+graph TD
+    T0["t=0s | y=0m | v=0 m/s"] -->|"5 m"| T1["t=1s | y=5m | v=10 m/s"]
+    T1 -->|"15 m"| T2["t=2s | y=20m | v=20 m/s"]
+    T2 -->|"25 m"| T3["t=3s | y=45m | v=30 m/s"]
+```
+:::
+
+---
+
+## 7. Interpretación de gráficos
+
+:::key-concept id="graficos-cinematica"
+Los gráficos son herramientas fundamentales en cinemática:
+- En un gráfico **x vs. t**: la pendiente es la velocidad; la curvatura indica aceleración.
+- En un gráfico **v vs. t**: la pendiente es la aceleración; el área bajo la curva es el desplazamiento.
+:::
+
+:::teacher-only
+**Nota para el docente:** Este es un buen momento para realizar una actividad práctica con sensores de movimiento o apps de smartphone que registren posición y velocidad. Los estudiantes pueden caminar frente al sensor y ver sus gráficos en tiempo real, lo que refuerza la conexión entre movimiento físico y representación matemática.
+
+Sugerencia de evaluación: dar a los estudiantes un gráfico v-t y pedirles que:
+1. Calculen la aceleración en cada tramo
+2. Dibujen el gráfico x-t correspondiente
+3. Calculen el desplazamiento total (área bajo la curva)
+:::
+
+:::student-only
+Practique dibujando gráficos x-t y v-t para los siguientes movimientos:
+1. Un auto que arranca del reposo y acelera uniformemente durante 10 s.
+2. Un auto que viaja a velocidad constante y luego frena hasta detenerse.
+3. Una pelota lanzada hacia arriba que sube, se detiene y baja.
+:::
+
+---
+
+:::summary
+- La **posición** es la ubicación de un objeto respecto al origen; el **desplazamiento** es el cambio de posición (m{Δx}, vector); la **distancia** es la longitud total recorrida (escalar).
+- La **velocidad media** es m{v̄ = Δx/Δt}; la **velocidad instantánea** es la derivada m{dx/dt} (pendiente en gráfico x-t).
+- La **aceleración** es el cambio de velocidad por unidad de tiempo (m{a = Δv/Δt}).
+- En **MRU**: m{v = cte}, m{x = x₀ + v·t}.
+- En **MRUA**: m{a = cte}, con tres ecuaciones fundamentales que relacionan m{x}, m{v}, m{a} y m{t}.
+- La **caída libre** es MRUA con m{a = g ≈ 9,8 m/s²}. Todos los cuerpos caen igual sin resistencia del aire.
+- Los gráficos x-t y v-t contienen toda la información cinemática: pendientes y áreas revelan velocidad, aceleración y desplazamiento.
+:::
+
+---
+
+:::question type="open" id="q-tren"
+1. Un tren parte del reposo y acelera a m{2 m/s²} durante 20 s. Luego mantiene velocidad constante durante 60 s. Finalmente frena uniformemente y se detiene en 10 s. Calcule la distancia total recorrida.
+2. Explique por qué la distancia de frenado se cuadruplica cuando la velocidad se duplica.
+
+= 1. Fase 1: m{x = ½·2·20² = 400 m} (m{v_f = 40 m/s}). Fase 2: m{x = 40·60 = 2400 m}. Fase 3: m{x = 40·10 + ½·(−4)·10² = 200 m}. Total = 3000 m.
+= 2. Porque la distancia de frenado depende de m{v²} (de la ecuación m{v² = v₀² + 2·a·d}). Si m{v} se duplica, m{v²} se cuadruplica, y con la misma desaceleración la distancia se cuadruplica.
+:::
+
+:::question type="choice" id="q-punto-alto"
+Un objeto se lanza verticalmente hacia arriba. En el punto más alto de su trayectoria:
+
+~ La velocidad y la aceleración son cero # La aceleración gravitatoria nunca se anula
+= La velocidad es cero y la aceleración es m{g} (hacia abajo) # Correcto — la velocidad es momentáneamente cero pero la gravedad sigue actuando
+~ La velocidad es máxima y la aceleración es cero # La velocidad es máxima al inicio del lanzamiento, no en el punto más alto
+~ La velocidad y la aceleración son máximas # Ambas no pueden ser máximas simultáneamente en este caso
+:::
+
+:::question type="choice" id="q-grafico-vt"
+En un gráfico velocidad vs. tiempo, el desplazamiento se obtiene calculando:
+
+~ La pendiente de la curva # La pendiente da la aceleración, no el desplazamiento
+~ La intersección con el eje vertical # Eso da la velocidad inicial
+~ La velocidad máxima # Eso es solo un valor puntual
+= El área bajo la curva # Correcto — la integral de m{v(t)} es el desplazamiento
+:::
+
+:::question type="case" id="q-peritaje"
+Un perito de tránsito llega a la escena de un accidente. Las marcas de frenado en el asfalto miden 40 m. El coeficiente de fricción entre neumáticos y asfalto seco es m{μ = 0,7} (desaceleración m{≈ 6,86 m/s²}). El límite de velocidad en esa zona es 60 km/h.
+
+a) ¿A qué velocidad circulaba el vehículo antes de frenar?
+b) ¿Excedía el límite de velocidad?
+c) Si el pavimento estuviera mojado (m{μ = 0,4}, desaceleración m{≈ 3,92 m/s²}), ¿cuánto mediría la marca de frenado a la misma velocidad inicial?
+
+= a) m{v = √(2 × 6,86 × 40) = 23,4 m/s = 84,3 km/h}
+= b) Sí, excedía el límite por 24,3 km/h (84,3 vs 60 km/h)
+= c) m{d = v²/(2·a) = 23,4²/(2 × 3,92) = 69,9 m} — casi el doble que en seco
+:::
+
+---
+
+:::reference
+- Serway RA, Jewett JW. *Física para ciencias e ingeniería*. 10.ª ed. Cengage Learning; 2019.
+- Halliday D, Resnick R, Walker J. *Fundamentos de Física*. 11.ª ed. Wiley; 2018.
+- Giancoli DC. *Física: Principios con aplicaciones*. 7.ª ed. Pearson; 2014.
+- Young HD, Freedman RA. *Física Universitaria*. 14.ª ed. Pearson; 2018.
+:::
