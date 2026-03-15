@@ -4,12 +4,14 @@ import { renderBlock } from './block-renderers.js'
 import { buildNumbering } from './numbering.js'
 import { inlineRefPlugin } from '../parser/inline-ref.js'
 import { mathPlugin } from '../parser/math.js'
+import { htmlCommentPlugin } from '../parser/html-comment.js'
 
 export function render(doc: EdumarkDocument, _options: RenderOptions = {}): string {
   const labels = buildNumbering(doc.blocks)
   const md = new MarkdownIt({ html: false })
   md.use(inlineRefPlugin)
   md.use(mathPlugin)
+  md.use(htmlCommentPlugin)
   md.enable('table')
 
   const parts: string[] = []

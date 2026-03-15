@@ -12,6 +12,7 @@ import { containerPlugin } from './container.js'
 import { inlineRefPlugin } from './inline-ref.js'
 import { resolveIncludes } from './include.js'
 import { mathPlugin } from './math.js'
+import { htmlCommentPlugin } from './html-comment.js'
 import { parseDefinitions, parseImageFields, parseDiagram, parseQuestion, shouldInclude } from '../blocks/index.js'
 
 export function createParser(): MarkdownIt {
@@ -19,6 +20,7 @@ export function createParser(): MarkdownIt {
   md.use(containerPlugin)
   md.use(inlineRefPlugin)
   md.use(mathPlugin)
+  md.use(htmlCommentPlugin)
   md.enable('table')
   return md
 }

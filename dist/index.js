@@ -494,6 +494,43 @@ function unicodeToLatex(input) {
   return s.trim();
 }
 
+// src/parser/html-comment.ts
+function htmlCommentPlugin(md) {
+  md.block.ruler.before("html_block", "html_comment", htmlCommentRule);
+  md.renderer.rules["html_comment"] = (tokens, idx) => tokens[idx].content;
+}
+function htmlCommentRule(state, startLine, endLine, silent) {
+  const startPos = state.bMarks[startLine] + state.tShift[startLine];
+  const src = state.src;
+  if (src.charCodeAt(startPos) !== 60) return false;
+  if (src.slice(startPos, startPos + 4) !== "<!--") return false;
+  let nextLine = startLine;
+  let found = false;
+  while (nextLine <= endLine) {
+    const lineStart = nextLine === startLine ? startPos : state.bMarks[nextLine];
+    const lineEnd = state.eMarks[nextLine];
+    const lineText = src.slice(lineStart, lineEnd);
+    const closeIdx = lineText.indexOf("-->");
+    if (closeIdx !== -1) {
+      found = true;
+      break;
+    }
+    nextLine++;
+  }
+  if (!found) return false;
+  if (silent) return true;
+  const lines = [];
+  for (let i = startLine; i <= nextLine; i++) {
+    const ls = i === startLine ? startPos : state.bMarks[i];
+    lines.push(src.slice(ls, state.eMarks[i]));
+  }
+  const token = state.push("html_comment", "", 0);
+  token.content = lines.join("\n") + "\n";
+  token.map = [startLine, nextLine + 1];
+  state.line = nextLine + 1;
+  return true;
+}
+
 // src/blocks/definition.ts
 function parseDefinitions(content) {
   const results = [];
@@ -617,6 +654,7 @@ function createParser() {
   md.use(containerPlugin);
   md.use(inlineRefPlugin);
   md.use(mathPlugin);
+  md.use(htmlCommentPlugin);
   md.enable("table");
   return md;
 }
@@ -1098,6 +1136,7 @@ function render(doc, _options = {}) {
   const md = new MarkdownIt3({ html: false });
   md.use(inlineRefPlugin);
   md.use(mathPlugin);
+  md.use(htmlCommentPlugin);
   md.enable("table");
   const parts = [];
   if (Object.keys(doc.frontmatter).length > 0) {
