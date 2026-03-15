@@ -8199,6 +8199,7 @@ var Edumark = (() => {
 
   // src/parser/attributes.ts
   var VALID_BLOCK_TYPES = /* @__PURE__ */ new Set([
+    "hero",
     "objective",
     "definition",
     "key-concept",
@@ -8605,6 +8606,28 @@ var Edumark = (() => {
     return results;
   }
 
+  // src/blocks/hero.ts
+  function parseHeroFields(content) {
+    const fields = {};
+    const topics = [];
+    const lines = content.split("\n");
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed) continue;
+      if (trimmed.startsWith("- ")) {
+        topics.push(trimmed.slice(2).trim());
+        continue;
+      }
+      const match2 = trimmed.match(/^(\w[\w-]*):\s*(?:"([^"]*)"|(.+))$/);
+      if (match2) {
+        const key = match2[1];
+        const value = match2[2] !== void 0 ? match2[2] : match2[3].trim();
+        fields[key] = value;
+      }
+    }
+    return { fields, topics };
+  }
+
   // src/blocks/image.ts
   function parseImageFields(content) {
     const fields = {};
@@ -8824,6 +8847,12 @@ var Edumark = (() => {
   }
   function parseBlockInternals(block2) {
     switch (block2.blockType) {
+      case "hero": {
+        const heroResult = parseHeroFields(block2.content);
+        block2.fields = heroResult.fields;
+        block2.topics = heroResult.topics;
+        break;
+      }
       case "definition":
         block2.definitions = parseDefinitions(block2.content);
         break;
@@ -8969,6 +8998,35 @@ ${inner}
     return blockCard(block2, `${renderMarkdown(block2.content)}${childrenHtml}`);
   }
   var RENDERERS = {
+    hero(block2) {
+      const f = block2.fields || {};
+      const topics = block2.topics || [];
+      const parts = [];
+      parts.push(`<header class="edm-hero"${id(block2)}>`);
+      const badges = [];
+      if (f.subject) badges.push(`<span class="edm-hero-badge edm-hero-subject">${esc2(f.subject)}</span>`);
+      if (f.level) badges.push(`<span class="edm-hero-badge edm-hero-level">${esc2(f.level)}</span>`);
+      if (f.unit) badges.push(`<span class="edm-hero-badge edm-hero-unit">${esc2(f.unit)}</span>`);
+      if (badges.length) parts.push(`<div class="edm-hero-badges">${badges.join("")}</div>`);
+      if (f.title) parts.push(`<h1 class="edm-hero-title">${esc2(f.title)}</h1>`);
+      const meta = [];
+      if (f.author) meta.push(`<span class="edm-hero-author">${esc2(f.author)}</span>`);
+      if (f.date) meta.push(`<span class="edm-hero-date">${esc2(f.date)}</span>`);
+      if (f.version) meta.push(`<span class="edm-hero-version">v${esc2(f.version)}</span>`);
+      if (meta.length) parts.push(`<div class="edm-hero-meta">${meta.join('<span class="edm-hero-sep">\xB7</span>')}</div>`);
+      if (topics.length) {
+        parts.push('<nav class="edm-hero-topics">');
+        parts.push('<span class="edm-hero-topics-label">Temas</span>');
+        parts.push("<ul>");
+        for (const t of topics) {
+          parts.push(`<li>${esc2(t)}</li>`);
+        }
+        parts.push("</ul>");
+        parts.push("</nav>");
+      }
+      parts.push("</header>\n");
+      return parts.join("\n");
+    },
     objective(block2, childrenHtml) {
       return blockCard(block2, `${renderMarkdown(block2.content)}${childrenHtml}`);
     },
@@ -9194,9 +9252,6 @@ ${block2.answers.map((a) => renderMarkdown(a)).join("\n")}
     md.use(htmlCommentPlugin);
     md.enable("table");
     const parts = [];
-    if (Object.keys(doc.frontmatter).length > 0) {
-      parts.push(renderHero(doc.frontmatter));
-    }
     const tokens = doc.tokens;
     const blocksByKey = buildBlockIndex(doc.blocks);
     let i = 0;
@@ -9228,34 +9283,6 @@ ${block2.answers.map((a) => renderMarkdown(a)).join("\n")}
       }
     }
     return parts.join("");
-  }
-  function renderHero(fm) {
-    const esc3 = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-    const parts = [];
-    parts.push('<header class="edm-hero">');
-    const badges = [];
-    if (fm.subject) badges.push(`<span class="edm-hero-badge edm-hero-subject">${esc3(fm.subject)}</span>`);
-    if (fm.level) badges.push(`<span class="edm-hero-badge edm-hero-level">${esc3(fm.level)}</span>`);
-    if (fm.unit) badges.push(`<span class="edm-hero-badge edm-hero-unit">${esc3(fm.unit)}</span>`);
-    if (badges.length) parts.push(`<div class="edm-hero-badges">${badges.join("")}</div>`);
-    if (fm.title) parts.push(`<h1 class="edm-hero-title">${esc3(fm.title)}</h1>`);
-    const meta = [];
-    if (fm.author) meta.push(`<span class="edm-hero-author">${esc3(fm.author)}</span>`);
-    if (fm.date) meta.push(`<span class="edm-hero-date">${esc3(fm.date)}</span>`);
-    if (fm.version) meta.push(`<span class="edm-hero-version">v${esc3(fm.version)}</span>`);
-    if (meta.length) parts.push(`<div class="edm-hero-meta">${meta.join('<span class="edm-hero-sep">\xB7</span>')}</div>`);
-    if (fm.topics && Array.isArray(fm.topics)) {
-      parts.push('<nav class="edm-hero-topics">');
-      parts.push('<span class="edm-hero-topics-label">Temas</span>');
-      parts.push("<ul>");
-      for (const t of fm.topics) {
-        parts.push(`<li>${esc3(t)}</li>`);
-      }
-      parts.push("</ul>");
-      parts.push("</nav>");
-    }
-    parts.push("</header>\n");
-    return parts.join("\n");
   }
   function renderSingleToken(tokens, idx, md) {
     const token = tokens[idx];

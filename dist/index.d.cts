@@ -1,4 +1,4 @@
-type BlockType = 'objective' | 'definition' | 'key-concept' | 'note' | 'warning' | 'example' | 'exercise' | 'application' | 'comparison' | 'diagram' | 'image' | 'question' | 'mnemonic' | 'history' | 'summary' | 'reference' | 'aside' | 'teacher-only' | 'student-only' | 'solution' | 'math';
+type BlockType = 'hero' | 'objective' | 'definition' | 'key-concept' | 'note' | 'warning' | 'example' | 'exercise' | 'application' | 'comparison' | 'diagram' | 'image' | 'question' | 'mnemonic' | 'history' | 'summary' | 'reference' | 'aside' | 'teacher-only' | 'student-only' | 'solution' | 'math';
 interface BlockAttributes {
     id?: string;
     title?: string;
@@ -31,6 +31,8 @@ interface EdumarkBlock {
         language: string;
         code: string;
     };
+    /** For hero blocks: topic list */
+    topics?: string[];
 }
 interface QuestionOption {
     correct: boolean;
