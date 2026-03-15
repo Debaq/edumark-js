@@ -263,6 +263,35 @@ Los gráficos son herramientas fundamentales en cinemática:
 - En un gráfico **v vs. t**: la pendiente es la aceleración; el área bajo la curva es el desplazamiento.
 :::
 
+:::diagram id="fig-relacion-xva" title="Relación entre posición, velocidad y aceleración"
+Diagrama que muestra las tres magnitudes cinemáticas (posición, velocidad, aceleración) y las operaciones matemáticas que las conectan: derivar para ir de posición a velocidad y de velocidad a aceleración; integrar en sentido inverso.
+
+```d2
+x: Posición x(t) {
+  shape: rectangle
+}
+v: Velocidad v(t) {
+  shape: rectangle
+}
+a: Aceleración a(t) {
+  shape: rectangle
+}
+
+x -> v: dx/dt (derivada) {
+  style.stroke-dash: 0
+}
+v -> a: dv/dt (derivada) {
+  style.stroke-dash: 0
+}
+a -> v: ∫a·dt (integral) {
+  style.stroke-dash: 3
+}
+v -> x: ∫v·dt (integral) {
+  style.stroke-dash: 3
+}
+```
+:::
+
 :::teacher-only
 **Nota para el docente:** Este es un buen momento para realizar una actividad práctica con sensores de movimiento o apps de smartphone que registren posición y velocidad. Los estudiantes pueden caminar frente al sensor y ver sus gráficos en tiempo real, lo que refuerza la conexión entre movimiento físico y representación matemática.
 
