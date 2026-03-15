@@ -1,57 +1,57 @@
 ---
-title: "Cinemática: el estudio del movimiento"
-author: "Ejemplo Edumark"
+title: "Kinematics: The Study of Motion"
+author: "Edumark Example"
 version: 1.0
 date: 2026-03
-subject: "Física General"
-level: "Pregrado"
-unit: "I — Mecánica"
+subject: "General Physics"
+level: "Undergraduate"
+unit: "I — Mechanics"
 topics:
-  - Posición y desplazamiento
-  - Velocidad media e instantánea
-  - Aceleración
-  - Movimiento rectilíneo uniforme (MRU)
-  - Movimiento rectilíneo uniformemente acelerado (MRUA)
-  - Caída libre
+  - Position and displacement
+  - Average and instantaneous velocity
+  - Acceleration
+  - Uniform rectilinear motion (URM)
+  - Uniformly accelerated rectilinear motion (UARM)
+  - Free fall
 ---
 
-# Cinemática: el estudio del movimiento
+# Kinematics: The Study of Motion
 
 :::objective
-Al finalizar este capítulo el estudiante será capaz de:
-- Distinguir entre posición, desplazamiento y distancia recorrida.
-- Calcular velocidad media e instantánea.
-- Resolver problemas de MRU y MRUA.
-- Aplicar las ecuaciones de caída libre.
-- Interpretar gráficos posición-tiempo y velocidad-tiempo.
+By the end of this chapter the student will be able to:
+- Distinguish between position, displacement, and distance traveled.
+- Calculate average and instantaneous velocity.
+- Solve URM and UARM problems.
+- Apply the free-fall equations.
+- Interpret position-time and velocity-time graphs.
 :::
 
 ---
 
-## 1. Posición y desplazamiento
+## 1. Position and displacement
 
-La **cinemática** es la rama de la mecánica que describe el movimiento de los cuerpos sin considerar las causas que lo producen. Para describir el movimiento necesitamos definir un sistema de referencia.
+**Kinematics** is the branch of mechanics that describes the motion of bodies without considering the forces that produce it. To describe motion we need to define a reference frame.
 
-:::definition id="def-posicion"
-**Posición** | Coordenada que indica la ubicación de un objeto respecto a un punto de referencia (origen) en un instante dado. Es una magnitud vectorial. Se representa como m{x(t)} en una dimensión.
+:::definition id="def-position"
+**Position** | Coordinate that indicates the location of an object relative to a reference point (origin) at a given instant. It is a vector quantity represented as m{x(t)} in one dimension.
 :::
 
-:::definition id="def-desplazamiento"
-**Desplazamiento** | Cambio en la posición de un objeto: m{Δx = x_f − x_i}. Es un vector que va del punto inicial al punto final, independiente de la trayectoria seguida.
+:::definition id="def-displacement"
+**Displacement** | Change in the position of an object: m{Δx = x_f − x_i}. It is a vector from the initial point to the final point, independent of the path taken.
 :::
 
 :::warning
-No confundir **desplazamiento** con **distancia recorrida**. El desplazamiento es un vector (tiene dirección y puede ser negativo); la distancia es un escalar (siempre positiva). Un corredor que da una vuelta completa a una pista de 400 m tiene distancia recorrida = 400 m pero desplazamiento = 0.
+Do not confuse **displacement** with **distance traveled**. Displacement is a vector (has direction and can be negative); distance is a scalar (always positive). A runner who completes one lap of a 400 m track has distance traveled = 400 m but displacement = 0.
 :::
 
-:::diagram id="fig-desplazamiento" title="Desplazamiento vs. distancia recorrida"
-Representación en una recta numérica (eje x):
-- Punto A en m{x = 2 m} (posición inicial)
-- Punto B en m{x = 8 m} (posición intermedia)
-- Punto C en m{x = 5 m} (posición final)
-- Trayectoria: A → B → C
-- Desplazamiento: flecha recta de A a C (m{Δx = 3 m})
-- Distancia recorrida: m{6 m + 3 m = 9 m}
+:::diagram id="fig-displacement" title="Displacement vs. distance traveled"
+Number line (x-axis) representation:
+- Point A at m{x = 2 m} (initial position)
+- Point B at m{x = 8 m} (intermediate position)
+- Point C at m{x = 5 m} (final position)
+- Path: A → B → C
+- Displacement: straight arrow from A to C (m{Δx = 3 m})
+- Distance traveled: m{6 m + 3 m = 9 m}
 
 ```mermaid
 graph LR
@@ -63,114 +63,105 @@ graph LR
 
 ---
 
-## 2. Velocidad
+## 2. Velocity
 
-:::definition id="def-velocidad-media"
-**Velocidad media** | Cociente entre el desplazamiento y el intervalo de tiempo: m{v̄ = Δx/Δt}. Es una magnitud vectorial. Sus unidades en el SI son m/s.
+:::definition id="def-avg-velocity"
+**Average velocity** | Ratio of displacement to time interval: m{v̄ = Δx/Δt}. It is a vector quantity. SI units are m/s.
 :::
 
-:::definition id="def-velocidad-instantanea"
-**Velocidad instantánea** | Límite de la velocidad media cuando el intervalo de tiempo tiende a cero: m{v = lím(Δt→0) Δx/Δt = dx/dt}. Corresponde a la pendiente de la curva posición-tiempo en cada instante.
+:::definition id="def-inst-velocity"
+**Instantaneous velocity** | Limit of average velocity as the time interval approaches zero: m{v = lim(Δt→0) Δx/Δt = dx/dt}. It corresponds to the slope of the position-time curve at each instant.
 :::
 
-:::key-concept id="pendiente-xt"
-En un gráfico posición vs. tiempo, la **pendiente** de la curva en cualquier punto es la velocidad instantánea. Una recta indica velocidad constante; una curva indica aceleración.
+:::key-concept id="slope-xt"
+In a position vs. time graph, the **slope** of the curve at any point is the instantaneous velocity. A straight line indicates constant velocity; a curve indicates acceleration.
 :::
 
-:::example title="Cálculo de velocidad media"
-Un ciclista parte de la posición m{x₁ = 2 km} en m{t₁ = 0 min} y llega a m{x₂ = 14 km} en m{t₂ = 30 min}.
+:::example title="Average velocity calculation"
+A cyclist starts at position m{x₁ = 2 km} at m{t₁ = 0 min} and arrives at m{x₂ = 14 km} at m{t₂ = 30 min}.
 
 :::math
-v̄ = Δx/Δt = (14 − 2)/(30 − 0) km/min = 12/30 = 0,4 km/min = 24 km/h
+v̄ = Δx/Δt = (14 − 2)/(30 − 0) km/min = 12/30 = 0.4 km/min = 24 km/h
 :::
 :::
 
-:::history title="Galileo y la medición del movimiento" characters="Galileo Galilei" year="1604"
-En la Italia del siglo XVII no existían cronómetros precisos. Galileo necesitaba medir tiempos con exactitud para estudiar la caída de los cuerpos, pero los relojes de su época eran demasiado imprecisos.
+:::history title="Galileo and the measurement of motion" characters="Galileo Galilei" year="1604"
+In 17th-century Italy there were no precise chronometers. Galileo needed to measure time accurately to study falling bodies, but the clocks of his era were too imprecise.
 
-Su solución fue ingeniosa: en lugar de dejar caer objetos verticalmente (demasiado rápido para medir), construyó planos inclinados pulidos para "diluir" la gravedad. Usaba un recipiente de agua con un pequeño orificio: el agua que salía durante la caída se pesaba, y el peso del agua era proporcional al tiempo transcurrido.
+His solution was ingenious: instead of dropping objects vertically (too fast to measure), he built polished inclined planes to "dilute" gravity. He used a water container with a small hole — the water that flowed out during the fall was weighed, and the weight was proportional to the elapsed time.
 
-Con este método rudimentario demostró que la distancia recorrida en caída libre es proporcional al cuadrado del tiempo (m{d ∝ t²}), una de las primeras leyes cuantitativas de la física y la base de la cinemática moderna.
+With this rudimentary method he demonstrated that the distance covered in free fall is proportional to the square of the time (m{d ∝ t²}), one of the first quantitative laws of physics and the foundation of modern kinematics.
 :::
 
 ---
 
-## 3. Aceleración
+## 3. Acceleration
 
-:::definition id="def-aceleracion"
-**Aceleración** | Tasa de cambio de la velocidad respecto al tiempo: m{a = Δv/Δt}. En el SI se mide en m/s². Puede ser positiva (aceleración), negativa (desaceleración) o cero (velocidad constante).
+:::definition id="def-acceleration"
+**Acceleration** | Rate of change of velocity with respect to time: m{a = Δv/Δt}. Measured in m/s² in SI. It can be positive (speeding up), negative (slowing down), or zero (constant velocity).
 :::
 
 :::note
-En el lenguaje cotidiano "acelerar" significa ir más rápido. En física, una aceleración negativa no significa necesariamente frenar — depende de la dirección del movimiento. Un objeto que se mueve hacia la izquierda y acelera hacia la izquierda tiene velocidad negativa y aceleración negativa, pero su rapidez aumenta.
+In everyday language "accelerate" means to go faster. In physics, a negative acceleration does not necessarily mean braking — it depends on the direction of motion. An object moving to the left and accelerating to the left has negative velocity and negative acceleration, but its speed increases.
 :::
 
 ---
 
-## 4. Movimiento Rectilíneo Uniforme (MRU)
+## 4. Uniform Rectilinear Motion (URM)
 
-:::key-concept id="mru"
-En el MRU la velocidad es constante (m{a = 0}). La posición varía linealmente con el tiempo:
+:::key-concept id="urm"
+In URM, velocity is constant (m{a = 0}). Position varies linearly with time:
 
 :::math
 x = x₀ + v·t
 :::
 :::
 
-:::comparison title="MRU vs. MRUA"
-| Característica | MRU | MRUA |
+:::comparison title="URM vs. UARM"
+| Property | URM | UARM |
 |---|---|---|
-| Velocidad | Constante | Cambia uniformemente |
-| Aceleración | 0 | Constante (≠ 0) |
-| Gráfico x-t | Recta | Parábola |
-| Gráfico v-t | Recta horizontal | Recta inclinada |
-| Ecuación de posición | m{x = x₀ + v·t} | m{x = x₀ + v₀·t + ½·a·t²} |
+| Velocity | Constant | Changes uniformly |
+| Acceleration | 0 | Constant (≠ 0) |
+| x-t graph | Straight line | Parabola |
+| v-t graph | Horizontal line | Inclined line |
+| Position equation | m{x = x₀ + v·t} | m{x = x₀ + v₀·t + ½·a·t²} |
 :::
 
-:::diagram id="fig-vt-mru-mrua" title="Gráficos v-t para MRU y MRUA"
-Dos gráficos velocidad vs. tiempo lado a lado. El de la izquierda muestra MRU (línea horizontal a velocidad constante). El de la derecha muestra MRUA (línea recta inclinada que parte de v₀ y crece con pendiente igual a la aceleración). En ambos, el área sombreada bajo la curva representa el desplazamiento.
+:::diagram id="fig-vt-urm-uarm" title="v-t graphs for URM and UARM"
+Two velocity vs. time graphs side by side. The left one shows URM (horizontal line at constant velocity). The right one shows UARM (inclined straight line starting from v₀ with slope equal to acceleration). In both, the shaded area under the curve represents displacement.
 
 ```svg
 <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
-  <!-- MRU -->
-  <text x="120" y="18" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">MRU</text>
-  <!-- ejes -->
+  <!-- URM -->
+  <text x="120" y="18" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">URM</text>
   <line x1="40" y1="170" x2="230" y2="170" stroke="currentColor" stroke-width="1.5"/>
   <line x1="40" y1="170" x2="40" y2="25" stroke="currentColor" stroke-width="1.5"/>
   <text x="135" y="192" text-anchor="middle" font-size="11" fill="currentColor">t (s)</text>
   <text x="18" y="100" text-anchor="middle" font-size="11" fill="currentColor" transform="rotate(-90,18,100)">v (m/s)</text>
-  <!-- area sombreada -->
   <rect x="40" y="70" width="180" height="100" fill="currentColor" opacity="0.08"/>
-  <!-- linea v = cte -->
   <line x1="40" y1="70" x2="220" y2="70" stroke="currentColor" stroke-width="2.5"/>
-  <!-- etiqueta -->
   <text x="225" y="74" font-size="11" fill="currentColor">v</text>
   <text x="115" y="130" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.5">Δx = v · t</text>
-
-  <!-- MRUA -->
-  <text x="400" y="18" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">MRUA</text>
-  <!-- ejes -->
+  <!-- UARM -->
+  <text x="400" y="18" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">UARM</text>
   <line x1="300" y1="170" x2="500" y2="170" stroke="currentColor" stroke-width="1.5"/>
   <line x1="300" y1="170" x2="300" y2="25" stroke="currentColor" stroke-width="1.5"/>
   <text x="400" y="192" text-anchor="middle" font-size="11" fill="currentColor">t (s)</text>
   <text x="278" y="100" text-anchor="middle" font-size="11" fill="currentColor" transform="rotate(-90,278,100)">v (m/s)</text>
-  <!-- area sombreada (trapecio) -->
   <polygon points="300,170 300,130 490,40 490,170" fill="currentColor" opacity="0.08"/>
-  <!-- linea v = v0 + a·t -->
   <line x1="300" y1="130" x2="490" y2="40" stroke="currentColor" stroke-width="2.5"/>
-  <!-- etiquetas -->
   <text x="285" y="134" text-anchor="end" font-size="10" fill="currentColor">v₀</text>
   <text x="495" y="44" font-size="11" fill="currentColor">v</text>
-  <text x="395" y="140" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.5">pendiente = a</text>
+  <text x="395" y="140" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.5">slope = a</text>
 </svg>
 ```
 :::
 
 ---
 
-## 5. Movimiento Rectilíneo Uniformemente Acelerado (MRUA)
+## 5. Uniformly Accelerated Rectilinear Motion (UARM)
 
-Las ecuaciones del MRUA son:
+The UARM equations are:
 
 :::math
 v = v₀ + a·t
@@ -179,58 +170,58 @@ v² = v₀² + 2·a·(x − x₀)
 :::
 
 :::mnemonic
-**Las 3 ecuaciones del MRUA — cada una omite una variable:**
-- Ecuación 1 omite **posición** (no aparece m{x})
-- Ecuación 2 omite **velocidad final** (no aparece m{v})
-- Ecuación 3 omite **tiempo** (no aparece m{t})
+**The 3 UARM equations — each one omits a variable:**
+- Equation 1 omits **position** (m{x} does not appear)
+- Equation 2 omits **final velocity** (m{v} does not appear)
+- Equation 3 omits **time** (m{t} does not appear)
 
-Truco: identifica qué dato te falta en el problema y usa la ecuación que no lo necesita.
+Trick: identify what data you are missing in the problem and use the equation that does not need it.
 :::
 
-:::exercise id="ex-mrua-01" title="Frenado de un automóvil"
-Un automóvil circula a 90 km/h cuando el conductor frena uniformemente y se detiene en 5 segundos. Calcule:
-a) La aceleración de frenado.
-b) La distancia recorrida durante el frenado.
+:::exercise id="ex-uarm-01" title="Braking a car"
+A car travels at 90 km/h when the driver brakes uniformly and stops in 5 seconds. Calculate:
+a) The braking acceleration.
+b) The distance covered during braking.
 
 :::solution
-Datos: m{v₀ = 90 km/h = 25 m/s}, m{v = 0 m/s}, m{t = 5 s}
+Data: m{v₀ = 90 km/h = 25 m/s}, m{v = 0 m/s}, m{t = 5 s}
 
 a) m{a = (v − v₀)/t = (0 − 25)/5 = −5 m/s²}
 
-b) m{x = v₀·t + ½·a·t² = 25·5 + ½·(−5)·5² = 125 − 62,5 = 62,5 m}
+b) m{x = v₀·t + ½·a·t² = 25·5 + ½·(−5)·5² = 125 − 62.5 = 62.5 m}
 :::
 :::
 
-:::application title="Distancia de frenado en seguridad vial"
-La distancia de frenado es crítica en ingeniería de tránsito. A 90 km/h, el automóvil del ejemplo necesita 62,5 m para detenerse — sin contar el tiempo de reacción del conductor (≈ 1 s), que agrega otros 25 m. La distancia total de detención sería ~87,5 m. Este cálculo determina la separación mínima entre vehículos y la longitud de las zonas de frenado en autopistas.
+:::application title="Braking distance in road safety"
+Braking distance is critical in traffic engineering. At 90 km/h, the car in the example needs 62.5 m to stop — not counting the driver's reaction time (≈ 1 s), which adds another 25 m. The total stopping distance would be ~87.5 m. This calculation determines the minimum following distance between vehicles and the length of braking zones on highways.
 :::
 
 ---
 
-## 6. Caída libre
+## 6. Free fall
 
-:::key-concept id="caida-libre"
-La caída libre es un caso particular de MRUA donde la aceleración es la gravedad:
+:::key-concept id="free-fall"
+Free fall is a special case of UARM where the acceleration is gravity:
 
 :::math
-a = g ≈ 9,8 m/s²
+a = g ≈ 9.8 m/s²
 :::
 
-En ausencia de resistencia del aire, todos los cuerpos caen con la misma aceleración independientemente de su masa.
+In the absence of air resistance, all bodies fall with the same acceleration regardless of their mass.
 :::
 
-:::aside title="¿Sabías que...?"
-En 1971, el astronauta David Scott dejó caer simultáneamente un martillo y una pluma en la Luna (sin atmósfera). Ambos llegaron al suelo exactamente al mismo tiempo, confirmando la predicción de Galileo 367 años después, pero esta vez en otro mundo.
+:::aside title="Did you know?"
+In 1971, astronaut David Scott simultaneously dropped a hammer and a feather on the Moon (no atmosphere). Both reached the ground at exactly the same time, confirming Galileo's prediction 367 years later — but this time on another world.
 :::
 
-:::exercise id="ex-caida-01" title="Objeto que cae desde un edificio"
-Se deja caer una pelota desde el techo de un edificio de 45 m de altura (m{v₀ = 0}). Calcule:
-a) El tiempo que tarda en llegar al suelo.
-b) La velocidad con la que impacta.
-(Use m{g = 10 m/s²} para simplificar)
+:::exercise id="ex-fall-01" title="Object falling from a building"
+A ball is dropped from the roof of a 45 m tall building (m{v₀ = 0}). Calculate:
+a) The time it takes to reach the ground.
+b) The impact velocity.
+(Use m{g = 10 m/s²} for simplicity)
 
 :::solution
-Datos: m{y₀ = 45 m}, m{v₀ = 0}, m{a = g = 10 m/s²}
+Data: m{y₀ = 45 m}, m{v₀ = 0}, m{a = g = 10 m/s²}
 
 a) m{y = ½·g·t²} → m{45 = ½·10·t²} → m{t² = 9} → **t = 3 s**
 
@@ -238,12 +229,12 @@ b) m{v = g·t = 10·3 = 30 m/s} (108 km/h)
 :::
 :::
 
-:::diagram id="fig-caida-libre" title="Posiciones sucesivas en caída libre"
-Diagrama vertical mostrando un objeto en caída libre:
-- Eje vertical con marcas cada segundo (m{t = 0, 1, 2, 3 s})
-- Posiciones del objeto: 0 m, 5 m, 20 m, 45 m
-- Distancias entre posiciones crecientes (5 m, 15 m, 25 m)
-- Ilustra visualmente que la separación entre posiciones aumenta con el tiempo
+:::diagram id="fig-free-fall" title="Successive positions in free fall"
+Vertical diagram showing an object in free fall:
+- Vertical axis with marks every second (m{t = 0, 1, 2, 3 s})
+- Object positions: 0 m, 5 m, 20 m, 45 m
+- Increasing distances between positions (5 m, 15 m, 25 m)
+- Illustrates visually that separation between positions grows with time
 
 ```mermaid
 graph TD
@@ -253,34 +244,42 @@ graph TD
 ```
 :::
 
----
-
-## 7. Interpretación de gráficos
-
-:::key-concept id="graficos-cinematica"
-Los gráficos son herramientas fundamentales en cinemática:
-- En un gráfico **x vs. t**: la pendiente es la velocidad; la curvatura indica aceleración.
-- En un gráfico **v vs. t**: la pendiente es la aceleración; el área bajo la curva es el desplazamiento.
+:::image id="fig-galileo-tower"
+file: galileo_pisa.jpg
+title: "Galileo's thought experiment at the Tower of Pisa"
+description: "Classic depiction of Galileo's experiment: two spheres of different mass dropped simultaneously from a height. Although there is no historical evidence that Galileo actually performed this experiment at the Tower of Pisa, the thought experiment was fundamental to his refutation of Aristotelian physics."
+source: "Illustration adapted from Drake, S., Galileo at Work, 1978"
+alt: "Two spheres of different sizes falling from a tower simultaneously"
 :::
 
-:::diagram id="fig-relacion-xva" title="Relación entre posición, velocidad y aceleración"
-Diagrama que muestra las tres magnitudes cinemáticas (posición, velocidad, aceleración) y las operaciones matemáticas que las conectan: derivar para ir de posición a velocidad y de velocidad a aceleración; integrar en sentido inverso.
+---
+
+## 7. Interpreting graphs
+
+:::key-concept id="graphs-kinematics"
+Graphs are fundamental tools in kinematics:
+- In an **x vs. t** graph: the slope is velocity; curvature indicates acceleration.
+- In a **v vs. t** graph: the slope is acceleration; the area under the curve is displacement.
+:::
+
+:::diagram id="fig-xva-relationship" title="Relationship between position, velocity, and acceleration"
+Diagram showing the three kinematic quantities (position, velocity, acceleration) and the mathematical operations connecting them: differentiate to go from position to velocity and from velocity to acceleration; integrate in the reverse direction.
 
 ```d2
-x: Posición x(t) {
+x: Position x(t) {
   shape: rectangle
 }
-v: Velocidad v(t) {
+v: Velocity v(t) {
   shape: rectangle
 }
-a: Aceleración a(t) {
+a: Acceleration a(t) {
   shape: rectangle
 }
 
-x -> v: dx/dt (derivada) {
+x -> v: dx/dt (derivative) {
   style.stroke-dash: 0
 }
-v -> a: dv/dt (derivada) {
+v -> a: dv/dt (derivative) {
   style.stroke-dash: 0
 }
 a -> v: ∫a·dt (integral) {
@@ -292,79 +291,106 @@ v -> x: ∫v·dt (integral) {
 ```
 :::
 
-:::teacher-only
-**Nota para el docente:** Este es un buen momento para realizar una actividad práctica con sensores de movimiento o apps de smartphone que registren posición y velocidad. Los estudiantes pueden caminar frente al sensor y ver sus gráficos en tiempo real, lo que refuerza la conexión entre movimiento físico y representación matemática.
+:::diagram id="fig-problem-solving" title="Kinematics problem-solving flowchart"
+Flowchart for solving kinematics problems: identify the type of motion (URM or UARM), list knowns and unknowns, select the appropriate equation, solve, and verify units and sign.
 
-Sugerencia de evaluación: dar a los estudiantes un gráfico v-t y pedirles que:
-1. Calculen la aceleración en cada tramo
-2. Dibujen el gráfico x-t correspondiente
-3. Calculen el desplazamiento total (área bajo la curva)
+```dot
+digraph {
+  rankdir=TB
+  node [shape=box, style=rounded]
+
+  start [label="Read the problem", shape=ellipse]
+  identify [label="Identify motion type\n(URM or UARM)"]
+  list [label="List knowns\nand unknowns"]
+  select [label="Select equation\n(omits the unknown\nyou don't need)"]
+  solve [label="Solve algebraically\nthen substitute"]
+  check [label="Check units\nand sign"]
+  done [label="Answer", shape=ellipse]
+
+  start -> identify -> list -> select -> solve -> check -> done
+}
+```
+:::
+
+:::teacher-only
+**Note for the instructor:** This is a good moment for a hands-on activity with motion sensors or smartphone apps that record position and velocity. Students can walk in front of the sensor and see their graphs in real time, reinforcing the connection between physical movement and mathematical representation.
+
+Assessment suggestion: give students a v-t graph and ask them to:
+1. Calculate the acceleration in each segment
+2. Draw the corresponding x-t graph
+3. Calculate the total displacement (area under the curve)
 :::
 
 :::student-only
-Practique dibujando gráficos x-t y v-t para los siguientes movimientos:
-1. Un auto que arranca del reposo y acelera uniformemente durante 10 s.
-2. Un auto que viaja a velocidad constante y luego frena hasta detenerse.
-3. Una pelota lanzada hacia arriba que sube, se detiene y baja.
+Practice drawing x-t and v-t graphs for the following motions:
+1. A car that starts from rest and accelerates uniformly for 10 s.
+2. A car that travels at constant speed and then brakes to a stop.
+3. A ball thrown upward that rises, stops, and falls.
 :::
 
 ---
 
 :::summary
-- La **posición** es la ubicación de un objeto respecto al origen; el **desplazamiento** es el cambio de posición (m{Δx}, vector); la **distancia** es la longitud total recorrida (escalar).
-- La **velocidad media** es m{v̄ = Δx/Δt}; la **velocidad instantánea** es la derivada m{dx/dt} (pendiente en gráfico x-t).
-- La **aceleración** es el cambio de velocidad por unidad de tiempo (m{a = Δv/Δt}).
-- En **MRU**: m{v = cte}, m{x = x₀ + v·t}.
-- En **MRUA**: m{a = cte}, con tres ecuaciones fundamentales que relacionan m{x}, m{v}, m{a} y m{t}.
-- La **caída libre** es MRUA con m{a = g ≈ 9,8 m/s²}. Todos los cuerpos caen igual sin resistencia del aire.
-- Los gráficos x-t y v-t contienen toda la información cinemática: pendientes y áreas revelan velocidad, aceleración y desplazamiento.
+- **Position** is the location of an object relative to the origin; **displacement** is the change in position (m{Δx}, vector); **distance** is the total path length (scalar).
+- **Average velocity** is m{v̄ = Δx/Δt}; **instantaneous velocity** is the derivative m{dx/dt} (slope in x-t graph).
+- **Acceleration** is the rate of change of velocity (m{a = Δv/Δt}).
+- In **URM**: m{v = const}, m{x = x₀ + v·t}.
+- In **UARM**: m{a = const}, with three fundamental equations relating m{x}, m{v}, m{a}, and m{t}.
+- **Free fall** is UARM with m{a = g ≈ 9.8 m/s²}. All bodies fall equally without air resistance.
+- x-t and v-t graphs contain all kinematic information: slopes and areas reveal velocity, acceleration, and displacement.
 :::
 
 ---
 
-:::question type="open" id="q-tren"
-1. Un tren parte del reposo y acelera a m{2 m/s²} durante 20 s. Luego mantiene velocidad constante durante 60 s. Finalmente frena uniformemente y se detiene en 10 s. Calcule la distancia total recorrida.
-2. Explique por qué la distancia de frenado se cuadruplica cuando la velocidad se duplica.
+:::question type="open" id="q-train"
+1. A train starts from rest and accelerates at m{2 m/s²} for 20 s. It then maintains constant speed for 60 s. Finally, it brakes uniformly and stops in 10 s. Calculate the total distance traveled.
+2. Explain why braking distance quadruples when speed doubles.
 
-= 1. Fase 1: m{x = ½·2·20² = 400 m} (m{v_f = 40 m/s}). Fase 2: m{x = 40·60 = 2400 m}. Fase 3: m{x = 40·10 + ½·(−4)·10² = 200 m}. Total = 3000 m.
-= 2. Porque la distancia de frenado depende de m{v²} (de la ecuación m{v² = v₀² + 2·a·d}). Si m{v} se duplica, m{v²} se cuadruplica, y con la misma desaceleración la distancia se cuadruplica.
+= 1. Phase 1: m{x = ½·2·20² = 400 m} (m{v_f = 40 m/s}). Phase 2: m{x = 40·60 = 2400 m}. Phase 3: m{x = 40·10 + ½·(−4)·10² = 200 m}. Total = 3000 m.
+= 2. Because braking distance depends on m{v²} (from the equation m{v² = v₀² + 2·a·d}). If m{v} doubles, m{v²} quadruples, and with the same deceleration the distance quadruples.
 :::
 
-:::question type="choice" id="q-punto-alto"
-Un objeto se lanza verticalmente hacia arriba. En el punto más alto de su trayectoria:
+:::question type="choice" id="q-highest-point"
+An object is thrown vertically upward. At the highest point of its trajectory:
 
-~ La velocidad y la aceleración son cero # La aceleración gravitatoria nunca se anula
-= La velocidad es cero y la aceleración es m{g} (hacia abajo) # Correcto — la velocidad es momentáneamente cero pero la gravedad sigue actuando
-~ La velocidad es máxima y la aceleración es cero # La velocidad es máxima al inicio del lanzamiento, no en el punto más alto
-~ La velocidad y la aceleración son máximas # Ambas no pueden ser máximas simultáneamente en este caso
+~ Both velocity and acceleration are zero # Gravitational acceleration never vanishes
+= Velocity is zero and acceleration is m{g} (downward) # Correct — velocity is momentarily zero but gravity keeps acting
+~ Velocity is maximum and acceleration is zero # Velocity is maximum at launch, not at the highest point
+~ Both velocity and acceleration are maximum # Both cannot be maximum simultaneously in this case
 :::
 
-:::question type="choice" id="q-grafico-vt"
-En un gráfico velocidad vs. tiempo, el desplazamiento se obtiene calculando:
+:::question type="choice" id="q-vt-graph"
+In a velocity vs. time graph, displacement is obtained by calculating:
 
-~ La pendiente de la curva # La pendiente da la aceleración, no el desplazamiento
-~ La intersección con el eje vertical # Eso da la velocidad inicial
-~ La velocidad máxima # Eso es solo un valor puntual
-= El área bajo la curva # Correcto — la integral de m{v(t)} es el desplazamiento
+~ The slope of the curve # The slope gives acceleration, not displacement
+~ The y-intercept # That gives the initial velocity
+~ The maximum velocity # That is just a single value
+= The area under the curve # Correct — the integral of m{v(t)} is displacement
 :::
 
-:::question type="case" id="q-peritaje"
-Un perito de tránsito llega a la escena de un accidente. Las marcas de frenado en el asfalto miden 40 m. El coeficiente de fricción entre neumáticos y asfalto seco es m{μ = 0,7} (desaceleración m{≈ 6,86 m/s²}). El límite de velocidad en esa zona es 60 km/h.
+:::question type="true-false" id="q-free-fall-mass"
+In the absence of air resistance, a heavier object falls faster than a lighter one.
 
-a) ¿A qué velocidad circulaba el vehículo antes de frenar?
-b) ¿Excedía el límite de velocidad?
-c) Si el pavimento estuviera mojado (m{μ = 0,4}, desaceleración m{≈ 3,92 m/s²}), ¿cuánto mediría la marca de frenado a la misma velocidad inicial?
+= false # Incorrect — all objects fall with the same acceleration regardless of mass. Galileo demonstrated this in the 17th century.
+:::
 
-= a) m{v = √(2 × 6,86 × 40) = 23,4 m/s = 84,3 km/h}
-= b) Sí, excedía el límite por 24,3 km/h (84,3 vs 60 km/h)
-= c) m{d = v²/(2·a) = 23,4²/(2 × 3,92) = 69,9 m} — casi el doble que en seco
+:::question type="case" id="q-forensics"
+A traffic forensics expert arrives at an accident scene. The skid marks on the asphalt measure 40 m. The friction coefficient between tires and dry asphalt is m{μ = 0.7} (deceleration m{≈ 6.86 m/s²}). The speed limit in that area is 60 km/h.
+
+a) At what speed was the vehicle traveling before braking?
+b) Was it exceeding the speed limit?
+c) If the pavement were wet (m{μ = 0.4}, deceleration m{≈ 3.92 m/s²}), how long would the skid mark be at the same initial speed?
+
+= a) m{v = √(2 × 6.86 × 40) = 23.4 m/s = 84.3 km/h}
+= b) Yes, exceeding the limit by 24.3 km/h (84.3 vs 60 km/h)
+= c) m{d = v²/(2·a) = 23.4²/(2 × 3.92) = 69.9 m} — nearly double than on dry road
 :::
 
 ---
 
 :::reference
-- Serway RA, Jewett JW. *Física para ciencias e ingeniería*. 10.ª ed. Cengage Learning; 2019.
-- Halliday D, Resnick R, Walker J. *Fundamentos de Física*. 11.ª ed. Wiley; 2018.
-- Giancoli DC. *Física: Principios con aplicaciones*. 7.ª ed. Pearson; 2014.
-- Young HD, Freedman RA. *Física Universitaria*. 14.ª ed. Pearson; 2018.
+- Serway RA, Jewett JW. *Physics for Scientists and Engineers*. 10th ed. Cengage Learning; 2019.
+- Halliday D, Resnick R, Walker J. *Fundamentals of Physics*. 11th ed. Wiley; 2018.
+- Giancoli DC. *Physics: Principles with Applications*. 7th ed. Pearson; 2014.
+- Young HD, Freedman RA. *University Physics*. 14th ed. Pearson; 2018.
 :::

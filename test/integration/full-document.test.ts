@@ -10,8 +10,8 @@ describe('full document integration', () => {
     const doc = parse(fixture)
 
     // Frontmatter
-    expect(doc.frontmatter.title).toBe('Cinemática: el estudio del movimiento')
-    expect(doc.frontmatter.author).toBe('Ejemplo Edumark')
+    expect(doc.frontmatter.title).toBe('Kinematics: The Study of Motion')
+    expect(doc.frontmatter.author).toBe('Edumark Example')
     expect((doc.frontmatter.topics as string[])).toHaveLength(6)
 
     // Should find multiple blocks
@@ -40,6 +40,8 @@ describe('full document integration', () => {
     expect(types.has('reference')).toBe(true)
     expect(types.has('teacher-only')).toBe(true)
     expect(types.has('student-only')).toBe(true)
+    expect(types.has('image')).toBe(true)
+    expect(types.has('math')).toBe(true)
   })
 
   it('correctly parses definitions', () => {
@@ -47,10 +49,10 @@ describe('full document integration', () => {
     const defs = doc.blocks.filter(b => b.blockType === 'definition')
     expect(defs.length).toBeGreaterThanOrEqual(4)
 
-    const posDef = defs.find(d => d.attributes.id === 'def-posicion')
+    const posDef = defs.find(d => d.attributes.id === 'def-position')
     expect(posDef).toBeDefined()
     expect(posDef!.definitions).toHaveLength(1)
-    expect(posDef!.definitions![0].term).toBe('Posición')
+    expect(posDef!.definitions![0].term).toBe('Position')
   })
 
   it('parses nested exercise/solution', () => {
@@ -66,15 +68,21 @@ describe('full document integration', () => {
   it('parses questions correctly', () => {
     const doc = parse(fixture)
     const questions = doc.blocks.filter(b => b.blockType === 'question')
-    expect(questions.length).toBeGreaterThanOrEqual(3)
+    expect(questions.length).toBeGreaterThanOrEqual(4)
 
     const choiceQ = questions.find(q => q.attributes.type === 'choice')
     expect(choiceQ).toBeDefined()
     expect(choiceQ!.options!.length).toBeGreaterThan(0)
 
+    const tfQ = questions.find(q => q.attributes.type === 'true-false')
+    expect(tfQ).toBeDefined()
+
     const caseQ = questions.find(q => q.attributes.type === 'case')
     expect(caseQ).toBeDefined()
     expect(caseQ!.answers!.length).toBeGreaterThan(0)
+
+    const openQ = questions.find(q => q.attributes.type === 'open')
+    expect(openQ).toBeDefined()
   })
 
   it('filters teacher-only in student mode', () => {
@@ -101,12 +109,15 @@ describe('full document integration', () => {
     expect(html).toContain('edm-question')
     expect(html).toContain('edm-solution')
     expect(html).toContain('class="mermaid"')
+    expect(html).toContain('edm-diagram-svg')
+    expect(html).toContain('edm-image')
   })
 
   it('builds ref map', () => {
     const doc = parse(fixture)
     expect(doc.refs.size).toBeGreaterThan(5)
-    expect(doc.refs.has('def-posicion')).toBe(true)
-    expect(doc.refs.has('fig-desplazamiento')).toBe(true)
+    expect(doc.refs.has('def-position')).toBe(true)
+    expect(doc.refs.has('fig-displacement')).toBe(true)
+    expect(doc.refs.has('q-free-fall-mass')).toBe(true)
   })
 })
