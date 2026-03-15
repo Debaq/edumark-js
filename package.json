@@ -33,6 +33,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
+    "@types/katex": "^0.16.8",
     "@types/markdown-it": "^14.1.2",
     "tsup": "^8.4.0",
     "typescript": "^5.7.0",
@@ -41,5 +42,13 @@
   "dependencies": {
     "js-yaml": "^4.1.0",
     "markdown-it": "^14.1.0"
+  },
+  "peerDependencies": {
+    "katex": ">=0.16.0"
+  },
+  "peerDependenciesMeta": {
+    "katex": {
+      "optional": true
+    }
   }
 }

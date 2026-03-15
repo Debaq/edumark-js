@@ -1,5 +1,6 @@
 import type MarkdownIt from 'markdown-it'
 import type Token from 'markdown-it/lib/token.mjs'
+import { renderLatexToHtml } from '../renderer/enhance-math.js'
 
 /**
  * markdown-it plugin: human-friendly math.
@@ -9,6 +10,8 @@ import type Token from 'markdown-it/lib/token.mjs'
  *
  * The author writes natural Unicode (v₀, Δx, ², ½, ·, →).
  * The decoder converts it to KaTeX-compatible LaTeX for rendering.
+ * If katex is installed, renders directly to HTML. Otherwise, outputs
+ * unicode text with data-math attribute for post-processing.
  */
 export function mathPlugin(md: MarkdownIt): void {
   // Core rule: replace m{...} in inline text tokens
@@ -22,7 +25,7 @@ export function mathPlugin(md: MarkdownIt): void {
   md.renderer.rules['edm_math_inline'] = (tokens, idx) => {
     const raw = tokens[idx].content
     const latex = unicodeToLatex(raw)
-    return `<span class="edm-math-inline" data-math="${escAttr(latex)}">${esc(raw)}</span>`
+    return renderLatexToHtml(latex, false, raw)
   }
 }
 
@@ -36,7 +39,7 @@ export function renderMathBlock(content: string): string {
     const trimmed = line.trim()
     if (!trimmed) return ''
     const latex = unicodeToLatex(trimmed)
-    return `<div class="edm-math-display" data-math="${escAttr(latex)}">${esc(trimmed)}</div>`
+    return renderLatexToHtml(latex, true, trimmed)
   })
   return parts.join('\n')
 }
@@ -187,10 +190,3 @@ export function unicodeToLatex(input: string): string {
   return s.trim()
 }
 
-function esc(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-}
-
-function escAttr(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-}

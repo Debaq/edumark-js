@@ -94,3 +94,11 @@ export interface RenderOptions {
 }
 
 export interface DecodeOptions extends ParseOptions, RenderOptions {}
+
+export interface DiagramOptions {
+  krokiUrl?: string // default: 'https://kroki.io'
+}
+
+export interface DecodeAsyncOptions extends DecodeOptions, DiagramOptions {}
+
+export interface RenderAsyncOptions extends RenderOptions, DiagramOptions {}

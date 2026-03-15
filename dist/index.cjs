@@ -35,8 +35,12 @@ __export(index_exports, {
   ParseError: () => ParseError,
   RefError: () => RefError,
   decode: () => decode,
+  decodeAsync: () => decodeAsync,
+  enhanceDiagrams: () => enhanceDiagrams,
   parse: () => parse2,
-  render: () => render2
+  render: () => render2,
+  renderAsync: () => renderAsync,
+  setKatex: () => setKatex
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -68,6 +72,89 @@ var RefError = class extends EdumarkError {
     this.name = "RefError";
   }
 };
+
+// src/renderer/enhance-math.ts
+var katexModule = null;
+function renderLatexToHtml(latex, displayMode, unicodeFallback) {
+  const tag = displayMode ? "div" : "span";
+  const cls = displayMode ? "edm-math-display" : "edm-math-inline";
+  const escaped = escAttr(latex);
+  if (katexModule) {
+    try {
+      const html = katexModule.renderToString(latex, {
+        displayMode,
+        throwOnError: false,
+        output: "html"
+      });
+      return `<${tag} class="${cls}" data-math="${escaped}">${html}</${tag}>`;
+    } catch {
+    }
+  }
+  return `<${tag} class="${cls}" data-math="${escaped}">${esc(unicodeFallback)}</${tag}>`;
+}
+function setKatex(mod) {
+  katexModule = mod;
+}
+function esc(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function escAttr(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// src/renderer/enhance-diagrams.ts
+var DEFAULT_KROKI_URL = "https://kroki.io";
+var MERMAID_RE = /<pre\s+class="mermaid">([\s\S]*?)<\/pre>/g;
+var DIAGRAM_CODE_RE = /<pre\s+class="edm-diagram-code"\s+data-language="([^"]+)">([\s\S]*?)<\/pre>/g;
+function decodeHtmlEntities(html) {
+  return html.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+}
+async function enhanceDiagrams(html, options) {
+  const krokiUrl = (options?.krokiUrl ?? DEFAULT_KROKI_URL).replace(/\/+$/, "");
+  const matches = [];
+  let m;
+  MERMAID_RE.lastIndex = 0;
+  while ((m = MERMAID_RE.exec(html)) !== null) {
+    matches.push({
+      fullMatch: m[0],
+      language: "mermaid",
+      code: decodeHtmlEntities(m[1])
+    });
+  }
+  DIAGRAM_CODE_RE.lastIndex = 0;
+  while ((m = DIAGRAM_CODE_RE.exec(html)) !== null) {
+    matches.push({
+      fullMatch: m[0],
+      language: m[1],
+      code: decodeHtmlEntities(m[2])
+    });
+  }
+  if (matches.length === 0) return html;
+  const results = await Promise.allSettled(
+    matches.map(async (match) => {
+      const res = await fetch(`${krokiUrl}/${match.language}/svg`, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: match.code
+      });
+      if (!res.ok) {
+        throw new Error(`Kroki returned ${res.status} for ${match.language}`);
+      }
+      return { match, svg: await res.text() };
+    })
+  );
+  let result = html;
+  for (const r of results) {
+    if (r.status === "fulfilled") {
+      const { match, svg } = r.value;
+      result = result.replace(
+        match.fullMatch,
+        `<div class="edm-diagram-render">${svg}</div>`
+      );
+    }
+  }
+  return result;
+}
 
 // src/parser/index.ts
 var import_markdown_it = __toESM(require("markdown-it"), 1);
@@ -338,7 +425,7 @@ function mathPlugin(md) {
   md.renderer.rules["edm_math_inline"] = (tokens, idx) => {
     const raw = tokens[idx].content;
     const latex = unicodeToLatex(raw);
-    return `<span class="edm-math-inline" data-math="${escAttr(latex)}">${esc(raw)}</span>`;
+    return renderLatexToHtml(latex, false, raw);
   };
 }
 function renderMathBlock(content) {
@@ -347,7 +434,7 @@ function renderMathBlock(content) {
     const trimmed = line.trim();
     if (!trimmed) return "";
     const latex = unicodeToLatex(trimmed);
-    return `<div class="edm-math-display" data-math="${escAttr(latex)}">${esc(trimmed)}</div>`;
+    return renderLatexToHtml(latex, true, trimmed);
   });
   return parts.join("\n");
 }
@@ -451,12 +538,6 @@ function unicodeToLatex(input) {
   s = s.replace(/lím/g, "\\lim");
   s = s.replace(/  +/g, " ");
   return s.trim();
-}
-function esc(s) {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-function escAttr(s) {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 // src/blocks/definition.ts
@@ -1186,6 +1267,15 @@ function decode(source, options) {
   const doc = parse2(source, options);
   return render2(doc, options);
 }
+async function renderAsync(doc, options) {
+  const html = render2(doc, options);
+  return enhanceDiagrams(html, options);
+}
+async function decodeAsync(source, options) {
+  const doc = parse2(source, options);
+  const html = render2(doc, options);
+  return enhanceDiagrams(html, options);
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   EdumarkError,
@@ -1193,7 +1283,11 @@ function decode(source, options) {
   ParseError,
   RefError,
   decode,
+  decodeAsync,
+  enhanceDiagrams,
   parse,
-  render
+  render,
+  renderAsync,
+  setKatex
 });
 //# sourceMappingURL=index.cjs.map
