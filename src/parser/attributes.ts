@@ -5,6 +5,7 @@ const VALID_BLOCK_TYPES = new Set<string>([
   'example', 'exercise', 'application', 'comparison', 'diagram',
   'image', 'question', 'mnemonic', 'history', 'summary',
   'reference', 'aside', 'teacher-only', 'student-only', 'solution', 'math',
+  'include',
 ])
 
 /**

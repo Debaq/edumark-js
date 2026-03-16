@@ -1,4 +1,4 @@
-type BlockType = 'hero' | 'objective' | 'definition' | 'key-concept' | 'note' | 'warning' | 'example' | 'exercise' | 'application' | 'comparison' | 'diagram' | 'image' | 'question' | 'mnemonic' | 'history' | 'summary' | 'reference' | 'aside' | 'teacher-only' | 'student-only' | 'solution' | 'math';
+type BlockType = 'hero' | 'objective' | 'definition' | 'key-concept' | 'note' | 'warning' | 'example' | 'exercise' | 'application' | 'comparison' | 'diagram' | 'image' | 'question' | 'mnemonic' | 'history' | 'summary' | 'reference' | 'aside' | 'teacher-only' | 'student-only' | 'solution' | 'math' | 'include';
 interface BlockAttributes {
     id?: string;
     title?: string;

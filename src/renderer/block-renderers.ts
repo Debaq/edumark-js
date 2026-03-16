@@ -44,6 +44,7 @@ const ICONS: Record<string, string> = {
   'student-only': '🎓',
   'solution': '✅',
   'math': '📐',
+  'include': '📄',
 }
 
 const LABELS: Record<string, string> = {
@@ -68,6 +69,7 @@ const LABELS: Record<string, string> = {
   'student-only': 'Actividad del estudiante',
   'solution': 'Solución',
   'math': 'Ecuación',
+  'include': 'Incluir',
 }
 
 function blockCard(block: EdumarkBlock, inner: string, extraClass?: string): string {
@@ -347,5 +349,24 @@ ${block.answers.map(a => renderMarkdown(a)).join('\n')}
 
   math(block) {
     return blockCard(block, renderMathBlock(block.content))
+  },
+
+  include(block) {
+    const file = (block.attributes.file as string) || ''
+    const title = (block.attributes.title as string) || ''
+    // Generar un anchor id basado en el nombre del archivo
+    const anchorId = file.replace(/\.edm$/, '').replace(/[^a-zA-Z0-9_-]/g, '-')
+    // Label: title del atributo, o contenido del bloque, o nombre de archivo
+    const label = title
+      || block.content.trim()
+      || file.replace(/\.edm$/, '').replace(/[_-]/g, ' ')
+
+    return `<div class="edm-include-link"${id(block)}>
+<a href="#${esc(anchorId)}" data-include-file="${esc(file)}" class="edm-include-ref">
+  <span class="edm-include-label">${renderInline(label)}</span>
+  <span class="edm-include-dots"></span>
+  <span class="edm-include-page" data-target="${esc(anchorId)}"></span>
+</a>
+</div>\n`
   },
 }

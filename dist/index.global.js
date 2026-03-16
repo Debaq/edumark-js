@@ -8220,7 +8220,8 @@ var Edumark = (() => {
     "teacher-only",
     "student-only",
     "solution",
-    "math"
+    "math",
+    "include"
   ]);
   function parseContainerLine(line) {
     const match2 = line.match(/^:{3,}\s*(\S+)(.*)$/);
@@ -8946,7 +8947,8 @@ var Edumark = (() => {
     "teacher-only": "\u{1F468}\u200D\u{1F3EB}",
     "student-only": "\u{1F393}",
     "solution": "\u2705",
-    "math": "\u{1F4D0}"
+    "math": "\u{1F4D0}",
+    "include": "\u{1F4C4}"
   };
   var LABELS = {
     "objective": "Objetivos de aprendizaje",
@@ -8969,7 +8971,8 @@ var Edumark = (() => {
     "teacher-only": "Solo para el docente",
     "student-only": "Actividad del estudiante",
     "solution": "Soluci\xF3n",
-    "math": "Ecuaci\xF3n"
+    "math": "Ecuaci\xF3n",
+    "include": "Incluir"
   };
   function blockCard(block2, inner, extraClass) {
     const type2 = block2.blockType;
@@ -9205,6 +9208,20 @@ ${block2.answers.map((a) => renderMarkdown(a)).join("\n")}
     },
     math(block2) {
       return blockCard(block2, renderMathBlock(block2.content));
+    },
+    include(block2) {
+      const file = block2.attributes.file || "";
+      const title = block2.attributes.title || "";
+      const anchorId = file.replace(/\.edm$/, "").replace(/[^a-zA-Z0-9_-]/g, "-");
+      const label = title || block2.content.trim() || file.replace(/\.edm$/, "").replace(/[_-]/g, " ");
+      return `<div class="edm-include-link"${id(block2)}>
+<a href="#${esc2(anchorId)}" data-include-file="${esc2(file)}" class="edm-include-ref">
+  <span class="edm-include-label">${renderInline(label)}</span>
+  <span class="edm-include-dots"></span>
+  <span class="edm-include-page" data-target="${esc2(anchorId)}"></span>
+</a>
+</div>
+`;
     }
   };
 
