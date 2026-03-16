@@ -187,6 +187,9 @@ function parseBlockInternals(block: EdumarkBlock): void {
       block.diagramCode = result.diagramCode
       break
     }
+    case 'embed':
+      block.fields = parseImageFields(block.content)
+      break
     case 'question': {
       const type = block.attributes.type as string || 'open'
       const result = parseQuestion(block.content, type)

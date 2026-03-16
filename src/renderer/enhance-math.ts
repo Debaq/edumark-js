@@ -10,6 +10,7 @@ interface KatexLike {
     displayMode?: boolean
     throwOnError?: boolean
     output?: string
+    strict?: boolean | string
   }): string
 }
 
@@ -35,6 +36,7 @@ export function renderLatexToHtml(
         displayMode,
         throwOnError: false,
         output: 'html',
+        strict: false,
       })
       return `<${tag} class="${cls}" data-math="${escaped}">${html}</${tag}>`
     } catch {

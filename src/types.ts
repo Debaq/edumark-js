@@ -21,6 +21,7 @@ export type BlockType =
   | 'student-only'
   | 'solution'
   | 'math'
+  | 'embed'
   | 'include'
 
 export interface BlockAttributes {

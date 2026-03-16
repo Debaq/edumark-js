@@ -1,4 +1,4 @@
-type BlockType = 'hero' | 'objective' | 'definition' | 'key-concept' | 'note' | 'warning' | 'example' | 'exercise' | 'application' | 'comparison' | 'diagram' | 'image' | 'question' | 'mnemonic' | 'history' | 'summary' | 'reference' | 'aside' | 'teacher-only' | 'student-only' | 'solution' | 'math' | 'include';
+type BlockType = 'hero' | 'objective' | 'definition' | 'key-concept' | 'note' | 'warning' | 'example' | 'exercise' | 'application' | 'comparison' | 'diagram' | 'image' | 'question' | 'mnemonic' | 'history' | 'summary' | 'reference' | 'aside' | 'teacher-only' | 'student-only' | 'solution' | 'math' | 'embed' | 'include';
 interface BlockAttributes {
     id?: string;
     title?: string;
@@ -106,6 +106,7 @@ interface KatexLike {
         displayMode?: boolean;
         throwOnError?: boolean;
         output?: string;
+        strict?: boolean | string;
     }): string;
 }
 /**

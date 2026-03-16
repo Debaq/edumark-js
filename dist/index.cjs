@@ -84,7 +84,8 @@ function renderLatexToHtml(latex, displayMode, unicodeFallback) {
       const html = katexModule.renderToString(latex, {
         displayMode,
         throwOnError: false,
-        output: "html"
+        output: "html",
+        strict: false
       });
       return `<${tag} class="${cls}" data-math="${escaped}">${html}</${tag}>`;
     } catch {
@@ -107,7 +108,7 @@ var DEFAULT_KROKI_URL = "https://kroki.io";
 var MERMAID_RE = /<pre\s+class="mermaid">([\s\S]*?)<\/pre>/g;
 var DIAGRAM_CODE_RE = /<pre\s+class="edm-diagram-code"\s+data-language="([^"]+)">([\s\S]*?)<\/pre>/g;
 function decodeHtmlEntities(html) {
-  return html.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+  return html.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\\n/g, "<br/>");
 }
 async function enhanceDiagrams(html, options) {
   const krokiUrl = (options?.krokiUrl ?? DEFAULT_KROKI_URL).replace(/\/+$/, "");
@@ -853,6 +854,9 @@ function parseBlockInternals(block) {
       block.diagramCode = result.diagramCode;
       break;
     }
+    case "embed":
+      block.fields = parseImageFields(block.content);
+      break;
     case "question": {
       const type = block.attributes.type || "open";
       const result = parseQuestion(block.content, type);
@@ -928,6 +932,7 @@ var ICONS = {
   "application": "\u{1F52C}",
   "comparison": "\u2696\uFE0F",
   "diagram": "\u{1F4CA}",
+  "embed": "\u{1F310}",
   "image": "\u{1F5BC}\uFE0F",
   "question": "\u2753",
   "mnemonic": "\u{1F9E0}",
@@ -952,6 +957,7 @@ var LABELS = {
   "application": "Aplicaci\xF3n",
   "comparison": "Comparaci\xF3n",
   "diagram": "Diagrama",
+  "embed": "Recurso externo",
   "image": "Figura",
   "question": "Pregunta",
   "mnemonic": "Mnemot\xE9cnico",
@@ -1090,20 +1096,54 @@ ${renderMarkdown(block.content)}
   },
   diagram(block) {
     const parts = [];
+    const zoom = block.attributes.zoom;
+    const zoomAttr = zoom ? ` data-edm-zoom="${esc2(zoom)}"` : "";
     if (block.diagramCode) {
       if (block.diagramCode.language === "mermaid") {
-        parts.push(`<div class="edm-diagram-render"><pre class="mermaid">${esc2(block.diagramCode.code)}</pre></div>`);
+        parts.push(`<div class="edm-diagram-render"${zoomAttr}><pre class="mermaid">${esc2(block.diagramCode.code)}</pre></div>`);
       } else if (block.diagramCode.language === "svg") {
-        parts.push(`<div class="edm-diagram-render edm-diagram-svg">${block.diagramCode.code}</div>`);
+        parts.push(`<div class="edm-diagram-render edm-diagram-svg"${zoomAttr}>${block.diagramCode.code}</div>`);
       } else {
-        parts.push(`<div class="edm-diagram-render"><pre class="edm-diagram-code" data-language="${esc2(block.diagramCode.language)}">${esc2(block.diagramCode.code)}</pre></div>`);
+        parts.push(`<div class="edm-diagram-render"${zoomAttr}><pre class="edm-diagram-code" data-language="${esc2(block.diagramCode.language)}">${esc2(block.diagramCode.code)}</pre></div>`);
       }
     }
-    if (block.description) {
+    const cleanDesc = block.description?.trim() || "";
+    if (cleanDesc) {
       const showClass = block.diagramCode ? " edm-diagram-fallback" : "";
-      parts.push(`<div class="edm-diagram-description${showClass}">${renderMarkdown(block.description)}</div>`);
+      parts.push(`<div class="edm-diagram-description${showClass}">${renderMarkdown(cleanDesc)}</div>`);
     }
     return blockCard(block, parts.join("\n"));
+  },
+  embed(block) {
+    const f = block.fields || {};
+    const src = f.src || "";
+    const title = f.title || "";
+    const desc = f.description || "";
+    const author = f.author || "";
+    const type = f.type || "generic";
+    if (!src) return blockCard(block, '<p class="edm-embed-error">No src provided</p>');
+    let captionInner = "";
+    if (title) captionInner += `<strong>${esc2(title)}</strong>`;
+    if (desc) captionInner += (captionInner ? "<br>" : "") + `<span class="edm-embed-desc">${esc2(desc)}</span>`;
+    if (author) captionInner += (captionInner ? "<br>" : "") + `<cite class="edm-embed-author">${esc2(author)}</cite>`;
+    const printDesc = desc || title || src;
+    const printFallback = `<div class="edm-embed-print" data-embed-src="${esc2(src)}">
+  <div class="edm-embed-qr"></div>
+  <div class="edm-embed-print-info">
+    ${title ? `<strong>${esc2(title)}</strong>` : ""}
+    ${desc ? `<p>${esc2(desc)}</p>` : ""}
+    <a href="${esc2(src)}" class="edm-embed-print-url">${esc2(src)}</a>
+    ${author ? `<cite class="edm-embed-author">${esc2(author)}</cite>` : ""}
+  </div>
+</div>`;
+    const inner = `<figure class="edm-embed-fig">
+  <div class="edm-embed-frame" data-embed-type="${esc2(type)}">
+    <iframe src="${esc2(src)}" title="${esc2(title || "Embedded content")}" frameborder="0" allowfullscreen loading="lazy"></iframe>
+  </div>
+  ${printFallback}
+  ${captionInner ? `<figcaption>${captionInner}</figcaption>` : ""}
+</figure>`;
+    return blockCard(block, inner);
   },
   question(block) {
     const type = block.attributes.type || "open";

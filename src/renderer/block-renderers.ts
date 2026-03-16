@@ -33,6 +33,7 @@ const ICONS: Record<string, string> = {
   'application': '🔬',
   'comparison': '⚖️',
   'diagram': '📊',
+  'embed': '🌐',
   'image': '🖼️',
   'question': '❓',
   'mnemonic': '🧠',
@@ -58,6 +59,7 @@ const LABELS: Record<string, string> = {
   'application': 'Aplicación',
   'comparison': 'Comparación',
   'diagram': 'Diagrama',
+  'embed': 'Recurso externo',
   'image': 'Figura',
   'question': 'Pregunta',
   'mnemonic': 'Mnemotécnico',
@@ -224,22 +226,66 @@ ${renderMarkdown(block.content)}
   diagram(block) {
     const parts: string[] = []
 
+    // Read zoom from block attributes: :::diagram zoom="0.8"
+    const zoom = block.attributes.zoom as string | undefined
+    const zoomAttr = zoom ? ` data-edm-zoom="${esc(zoom)}"` : ''
+
     if (block.diagramCode) {
       if (block.diagramCode.language === 'mermaid') {
-        parts.push(`<div class="edm-diagram-render"><pre class="mermaid">${esc(block.diagramCode.code)}</pre></div>`)
+        parts.push(`<div class="edm-diagram-render"${zoomAttr}><pre class="mermaid">${esc(block.diagramCode.code)}</pre></div>`)
       } else if (block.diagramCode.language === 'svg') {
-        parts.push(`<div class="edm-diagram-render edm-diagram-svg">${block.diagramCode.code}</div>`)
+        parts.push(`<div class="edm-diagram-render edm-diagram-svg"${zoomAttr}>${block.diagramCode.code}</div>`)
       } else {
-        parts.push(`<div class="edm-diagram-render"><pre class="edm-diagram-code" data-language="${esc(block.diagramCode.language)}">${esc(block.diagramCode.code)}</pre></div>`)
+        parts.push(`<div class="edm-diagram-render"${zoomAttr}><pre class="edm-diagram-code" data-language="${esc(block.diagramCode.language)}">${esc(block.diagramCode.code)}</pre></div>`)
       }
     }
 
-    if (block.description) {
+    const cleanDesc = block.description?.trim() || ''
+
+    if (cleanDesc) {
       const showClass = block.diagramCode ? ' edm-diagram-fallback' : ''
-      parts.push(`<div class="edm-diagram-description${showClass}">${renderMarkdown(block.description)}</div>`)
+      parts.push(`<div class="edm-diagram-description${showClass}">${renderMarkdown(cleanDesc)}</div>`)
     }
 
     return blockCard(block, parts.join('\n'))
+  },
+
+  embed(block) {
+    const f = block.fields || {}
+    const src = f.src || ''
+    const title = f.title || ''
+    const desc = f.description || ''
+    const author = f.author || ''
+    const type = f.type || 'generic'
+
+    if (!src) return blockCard(block, '<p class="edm-embed-error">No src provided</p>')
+
+    let captionInner = ''
+    if (title) captionInner += `<strong>${esc(title)}</strong>`
+    if (desc) captionInner += (captionInner ? '<br>' : '') + `<span class="edm-embed-desc">${esc(desc)}</span>`
+    if (author) captionInner += (captionInner ? '<br>' : '') + `<cite class="edm-embed-author">${esc(author)}</cite>`
+
+    // Print fallback: QR placeholder + description (PDF exporters replace .edm-embed-qr with actual QR)
+    const printDesc = desc || title || src
+    const printFallback = `<div class="edm-embed-print" data-embed-src="${esc(src)}">
+  <div class="edm-embed-qr"></div>
+  <div class="edm-embed-print-info">
+    ${title ? `<strong>${esc(title)}</strong>` : ''}
+    ${desc ? `<p>${esc(desc)}</p>` : ''}
+    <a href="${esc(src)}" class="edm-embed-print-url">${esc(src)}</a>
+    ${author ? `<cite class="edm-embed-author">${esc(author)}</cite>` : ''}
+  </div>
+</div>`
+
+    const inner = `<figure class="edm-embed-fig">
+  <div class="edm-embed-frame" data-embed-type="${esc(type)}">
+    <iframe src="${esc(src)}" title="${esc(title || 'Embedded content')}" frameborder="0" allowfullscreen loading="lazy"></iframe>
+  </div>
+  ${printFallback}
+  ${captionInner ? `<figcaption>${captionInner}</figcaption>` : ''}
+</figure>`
+
+    return blockCard(block, inner)
   },
 
   question(block) {
