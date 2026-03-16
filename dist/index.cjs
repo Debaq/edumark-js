@@ -150,7 +150,7 @@ async function enhanceDiagrams(html, options) {
       const { match, svg } = r.value;
       result = result.replace(
         match.fullMatch,
-        `<div class="edm-diagram-render">${svg}</div>`
+        `<div class="edm-mermaid-rendered">${svg}</div>`
       );
     }
   }
@@ -199,6 +199,7 @@ var VALID_BLOCK_TYPES = /* @__PURE__ */ new Set([
   "comparison",
   "diagram",
   "image",
+  "embed",
   "question",
   "mnemonic",
   "history",

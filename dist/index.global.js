@@ -140,7 +140,7 @@ var Edumark = (() => {
         const { match: match2, svg } = r.value;
         result = result.replace(
           match2.fullMatch,
-          `<div class="edm-diagram-render">${svg}</div>`
+          `<div class="edm-mermaid-rendered">${svg}</div>`
         );
       }
     }
@@ -8212,6 +8212,7 @@ var Edumark = (() => {
     "comparison",
     "diagram",
     "image",
+    "embed",
     "question",
     "mnemonic",
     "history",

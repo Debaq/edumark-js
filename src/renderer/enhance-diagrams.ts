@@ -95,7 +95,7 @@ export async function enhanceDiagrams(
       const { match, svg } = r.value
       result = result.replace(
         match.fullMatch,
-        `<div class="edm-diagram-render">${svg}</div>`
+        `<div class="edm-mermaid-rendered">${svg}</div>`
       )
     }
     // On rejection: leave original <pre> block untouched
